@@ -6,7 +6,8 @@ const LoginPage: BlitzPage = () => {
   const router = useRouter()
 
   return (
-    <div>
+    <div className="flex">
+      <img src="/login.png" className="w-4/12 mt-20 ml-20 mr-20" alt="remote work" />
       <LoginForm
         onSuccess={() => {
           const next = router.query.next ? decodeURIComponent(router.query.next as string) : "/"
