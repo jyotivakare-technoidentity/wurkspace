@@ -1,13 +1,15 @@
 import { useRouter, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { ActionCard } from "app/auth/components/ActionCard"
+import { Boards } from "app/auth/components/dashboard/Boards"
+import { Header } from "app/auth/components/dashboard/Header"
 
 const DashBoard: BlitzPage = () => {
   const router = useRouter()
 
   return (
     <div>
-      <ActionCard />
+      <Header />
+      <Boards />
     </div>
   )
 }

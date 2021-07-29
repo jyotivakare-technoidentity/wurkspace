@@ -2,7 +2,7 @@ export const ActionCard = () => {
   return (
     <div
       className="bg-blue
-     w-full p-8 flex justify-center font-sans"
+     w-full p-8 flex font-sans"
     >
       <div className="rounded bg-gray-200 w-64 p-2">
         <div className="flex justify-between py-1">
