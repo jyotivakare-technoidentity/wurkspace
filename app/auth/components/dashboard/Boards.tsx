@@ -1,5 +1,7 @@
 import { ActionCard } from "app/auth/components/dashboard/ActionCard"
 import { CreateActionCard } from "app/auth/components/dashboard/CreateActionCard"
+import React, { useState } from "react"
+import { Link } from "@chakra-ui/react"
 
 type LayoutProps = {
   title?: string
@@ -7,6 +9,11 @@ type LayoutProps = {
 }
 
 export const Boards = ({ title, color }: LayoutProps) => {
+  const goToPreviousPage = () => {
+    return setActionCards([...actionCards, { component: <ActionCard /> }])
+  }
+
+  const [actionCards, setActionCards] = useState([{ component: <ActionCard /> }])
   return (
     <div className="flex">
       <div className="bg-blue w-full p-0.5 min-h-screen	mt-4 flex font-sans">
@@ -16,8 +23,14 @@ export const Boards = ({ title, color }: LayoutProps) => {
           >
             {title}
           </div>
-          <ActionCard />
-          <CreateActionCard />
+          {actionCards.map((val) => (
+            <>{val.component}</>
+          ))}
+          <div className="flex items-center justify-center shadow-2xl m-3">
+            <div className="rounded-full h-6 w-6 flex items-center justify-center bg-white shadow-2xl">
+              <Link onClick={goToPreviousPage}> +</Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
