@@ -3,7 +3,7 @@ import { ActionCard } from "app/auth/components/dashboard/ActionCard"
 export const Header = () => {
   return (
     <div>
-      <h1 className="m-4">Good Morning Emma</h1>
+      <p className="ml-15">Good Morning Emma</p>
     </div>
   )
 }

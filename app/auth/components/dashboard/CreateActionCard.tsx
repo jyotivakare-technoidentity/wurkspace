@@ -1,18 +1,22 @@
 import { Link } from "@chakra-ui/react"
 import { ActionCard } from "app/auth/components/dashboard/ActionCard"
 import React from "react"
+import { render } from "test/utils"
 
-export const CreateActionCard = () => {
+type LayoutProps = {
+  actioncards?: string
+  setActionCards?: string
+}
+
+export const CreateActionCard = (actionCards, setActionCards) => {
+  const goToPreviousPage = () => {
+    return setActionCards([...actionCards, { component: <ActionCard /> }])
+  }
+
   return (
     <div className="flex items-center justify-center shadow-2xl m-3">
       <div className="rounded-full h-6 w-6 flex items-center justify-center bg-white shadow-2xl">
-        <Link
-          onClick={() => {
-            ;<h1>hello</h1>
-          }}
-        >
-          +
-        </Link>
+        <Link onClick={goToPreviousPage}> +</Link>
       </div>
     </div>
   )
