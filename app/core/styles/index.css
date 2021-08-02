@@ -17,3 +17,7 @@
 .description {
   @apply text-center;
 }
+body {
+  height: 600px; /* Make this site really long /* Make this site really wide */
+  overflow-y: hidden; /* Hide scrollbars */
+}

@@ -1,6 +1,6 @@
 export const ActionCard = () => {
   return (
-    <div className="text-sm p-2">
+    <div className="text-sm p-2 ml-2">
       <div className="bg-white p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter">
         Check the responsive layout on all devices
         <div className="text-grey-darker mt-2 ml-2 flex justify-between items-start">

@@ -15,20 +15,23 @@ export const Boards = ({ title, color }: LayoutProps) => {
 
   const [actionCards, setActionCards] = useState([{ component: <ActionCard /> }])
   return (
-    <div className="flex">
-      <div className="bg-blue w-full p-0.5 min-h-screen	mt-4 flex font-sans">
-        <div className="rounded bg-gray-100 w-64">
-          <div
-            className={`${color}	 p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
-          >
-            {title}
-          </div>
-          {actionCards.map((val) => (
-            <>{val.component}</>
-          ))}
-          <div className="flex items-center justify-center shadow-2xl m-3">
-            <div className="rounded-full h-6 w-6 flex items-center justify-center bg-white shadow-2xl">
-              <Link onClick={goToPreviousPage}> +</Link>
+    <div>
+      {" "}
+      <div className="flex">
+        <div className="bg-blue w-full p-0.5 min-h-screen	mt-10 flex font-sans">
+          <div className="rounded bg-gray-100 w-64">
+            <div
+              className={`${color}	 p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
+            >
+              {title}
+            </div>
+            {actionCards.map((val) => (
+              <>{val.component}</>
+            ))}
+            <div className="flex items-center justify-center shadow-2xl m-3">
+              <div className="rounded-full h-6 w-6 flex items-center justify-center bg-white shadow-2xl">
+                <Link onClick={goToPreviousPage}> +</Link>
+              </div>
             </div>
           </div>
         </div>
