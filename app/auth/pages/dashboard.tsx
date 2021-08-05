@@ -10,6 +10,7 @@ const DashBoard: BlitzPage = () => {
   return (
     <div className="h-full">
       <div className="flex">
+        <Header />
         <SidebarWithHeader />
         <Boards title="Whats on top of your mind" color="bg-purple-200" />
         <Boards title="Things that well this week" color="bg-pink-200" />
