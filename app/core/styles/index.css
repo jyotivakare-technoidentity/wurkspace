@@ -19,7 +19,7 @@
 }
 body {
   height: 600px; /* Make this site really long /* Make this site really wide */
-  overflow-y: hidden; /* Hide scrollbars */
+  overflow-y: scroll; /* Hide scrollbars */
   font-family: Nunito Sans;
 }
 .arrow {
