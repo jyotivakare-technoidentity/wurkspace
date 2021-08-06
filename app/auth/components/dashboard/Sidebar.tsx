@@ -7,7 +7,7 @@ export const SidebarWithHeader = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const showSidebar = () => setSidebarOpen(!sidebarOpen)
   return (
-    <div className="w-10 bg-blue-700 mr-11">
+    <div className="w-10 bg-blue-700 mr-11 fixed top-0 left-0">
       <div className="w-10 bg-blue-700 fixed min-h-screen">
         {!sidebarOpen ? (
           <a onClick={() => showSidebar()} className="m-4 pt-1">

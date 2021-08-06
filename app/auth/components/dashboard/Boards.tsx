@@ -16,7 +16,7 @@ export const Boards = ({ title, color }: LayoutProps) => {
   const [actionCards, setActionCards] = useState([{ component: <ActionCard /> }])
   return (
     <div>
-      <div className="flex">
+      <div className=" flex">
         <div className="bg-blue w-full p-0.5 min-h-screen	mt-10 flex font-sans">
           <div className="rounded bg-gray-100 w-64">
             <div

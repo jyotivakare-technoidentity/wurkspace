@@ -4,6 +4,7 @@ import { IoIosArrowForward, IoIosArrowBack, IoIosCalendar, IoIosCog } from "reac
 import GoalsCard from "app/auth/components/dashboard/GoalsCard"
 import InsightsCard from "app/auth/components/dashboard/InsightsCard"
 import AlertCard from "app/auth/components/dashboard/AlertCard"
+import { SidebarWithHeader } from "app/auth/components/dashboard/Sidebar"
 
 import {
   TiMessages,
@@ -17,16 +18,17 @@ import "react-datepicker/dist/react-datepicker.css"
 export const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const showSidebar = () => setSidebarOpen(!sidebarOpen)
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
 
   return (
     <>
-      <div className="flex  mt-4">
-        <div className=" flex mx-4 text-blue-700 left-0">
+      <div className="flex  mt-4 ">
+        <div className=" flex mx-4 text-blue-700 ">
           <TiMessages className="mr-2" style={{ width: "25px", height: "28px" }} />
           <h1 className="font-bold text-lg">1:1 with John Doe</h1>
         </div>
+
         <button className="flex ml-6 mr-1 p-2 bg-yellow-500 hover:bg-yellow-600 rounded ">
           <TiArrowForwardOutline className="my-1" />
           End Meeting
@@ -37,13 +39,13 @@ export const Header = () => {
         <button className="flex mx-2 p-2 bg-gray-100 hover:bg-gray-200 rounded ">
           View 1 :1 from
           <DatePicker
-            className="rounded w-20 px-1 mx-1"
+            className="rounded w-24 px-1 mx-1"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
           <IoIosCalendar className="mr-2 mt-1" />/ to{" "}
           <DatePicker
-            className="rounded w-20 px-1 mx-1"
+            className="rounded w-24 px-1 mx-1"
             selected={endDate}
             onChange={(date) => setEndDate(date)}
           />
