@@ -8,7 +8,7 @@ const DashBoard: BlitzPage = () => {
   const router = useRouter()
 
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <Header />
       <div className="flex">
         <SidebarWithHeader />
