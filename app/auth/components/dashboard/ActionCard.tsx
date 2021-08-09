@@ -24,10 +24,6 @@ export const ActionCard = () => {
   return (
     <div className="text-sm p-2">
       <div className="bg-white p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter">
-        <Suspense fallback="Loading...">
-          <ActionInfo />
-        </Suspense>
-
         {inEditMode ? (
           <div className="flex">
             <input
@@ -44,17 +40,18 @@ export const ActionCard = () => {
           </div>
         )}
         {showModal ? <Modal /> : ""}
-        <div className="text-grey-darker mt-2 ml-2 flex justify-end items-end">
+        <div className="text-grey-darker mt-2 ml-2 flex items-center">
+          <span className="placeholder">Type / to open the items list</span>
           {!inEditMode ? (
             <BiPencil
-              className="m-2 text-gray-400 hover:text-gray-600"
+              className="m-2 text-gray-400 hover:text-gray-600 justify-end ml-8"
               onClick={() => {
                 setInEditMode(true)
               }}
             />
           ) : (
             <BiCheck
-              className="m-2 text-xl text-blue-400 hover:text-blue-600"
+              className="m-2 text-xl text-blue-400 hover:text-blue-600 justify-end ml-8"
               onClick={() => {
                 setInEditMode(false)
               }}

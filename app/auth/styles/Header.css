@@ -28,3 +28,23 @@
 
   color: #605bff;
 }
+
+.actionitem_btn {
+  background: rgba(96, 91, 255, 0.1);
+  border: 1px solid rgba(96, 91, 255, 0.5);
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #605bff;
+}
+
+.icon,
+.text {
+  vertical-align: middle;
+  display: inline-block;
+}
