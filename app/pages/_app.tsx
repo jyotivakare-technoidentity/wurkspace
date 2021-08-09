@@ -10,6 +10,8 @@ import {
 import LoginForm from "app/auth/components/LoginForm"
 
 import "app/core/styles/index.css"
+import "app/auth/styles/Header.css"
+import "app/auth/styles/Board.css"
 
 import { ChakraProvider } from "@chakra-ui/react"
 

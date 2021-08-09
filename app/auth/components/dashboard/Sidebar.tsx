@@ -9,25 +9,12 @@ export const SidebarWithHeader = () => {
   return (
     <div className="w-10 bg-blue-700 mr-11 fixed top-0 left-0">
       <div className="w-10 bg-blue-700 fixed min-h-screen">
-        {!sidebarOpen ? (
-          <a onClick={() => showSidebar()} className="m-4 pt-1">
-            <img src="/action.png" className="p-2 mt-10" alt="remote work" />
-          </a>
-        ) : (
-          <div>
-            <a onClick={() => showSidebar()} className="m-4 pt-1">
-              <img src="/action.png" className="p-2 mt-10" alt="remote work" />
-            </a>
-            <AllActionSideBar />
-          </div>
-        )}
-        <img src="/notification.ico" className="p-2" alt="remote work" />
-        <img src="/users.png" className="p-2" alt="remote work" />
-        <img src="/action.png" className="p-2" alt="remote work" />
-        <img src="/message.png" className="p-2" alt="remote work" />
+        <img src="/logo_company.png" className="p-2 mt-1" alt="logo" />
+        <img src="/bell.png" className="p-2 mt-1" alt="notification" />
+        <img src="/users.png" className="p-2 mt-1" alt="users" />
         <img
-          className="object-cover w-8 h-8 rounded-full absolute bottom-6"
-          src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+          className="object-cover w-8 h-8 mt-8 rounded-full absolute bottom-6"
+          src="/user_footer.png"
           alt="Profile image"
         />
       </div>

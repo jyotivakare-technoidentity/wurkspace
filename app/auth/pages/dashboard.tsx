@@ -12,11 +12,11 @@ const DashBoard: BlitzPage = () => {
       <Header />
       <div className="flex ml-12">
         <SidebarWithHeader />
-        <Boards title="Whats on top of your mind" color="bg-purple-200" />
-        <Boards title="Things that well this week" color="bg-pink-200" />
-        <Boards title="Learnings" color="bg-green-200" />
-        <Boards title="Priorities since we last met" color="bg-yellow-400" />
-        <Boards title="Challenges" color="bg-blue-200" />
+        <Boards title="Whats on top of your mind" color="purple" />
+        <Boards title="Things that well this week" color="blue" />
+        <Boards title="Learnings" color="pink" />
+        <Boards title="Priorities since we last met" color="blue-light" />
+        <Boards title="Challenges" color="yellow" />
         <Boards title="Feedback" color="bg-purple-400" />
       </div>
     </div>
