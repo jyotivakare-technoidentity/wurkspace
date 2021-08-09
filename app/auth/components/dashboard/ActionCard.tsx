@@ -22,24 +22,29 @@ export const ActionCard = () => {
   const action = "Check the responsive layout on all devices"
 
   return (
-    <div className="text-sm p-2 ml-2">
+    <div className="text-sm p-2">
       <div className="bg-white p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter">
         <Suspense fallback="Loading...">
           <ActionInfo />
         </Suspense>
 
         {inEditMode ? (
-          <input
-            type="text"
-            defaultValue="Check the responsive layout on all devices"
-            className="border rounded w-full py-2 px-3 text-left overflow-visible"
-          />
+          <div className="flex">
+            <input
+              type="text"
+              defaultValue="Check the responsive layout on all devices"
+              className="border rounded py-2 px-3 text-left overflow-visible max-w-xs"
+            />
+            <img src="user_default.png" className=" rounded-full h-8 w-8 	 " />
+          </div>
         ) : (
-          <a onClick={() => setShowModal(true)}>{action}</a>
+          <div className="flex">
+            <a onClick={() => setShowModal(true)}>{action}</a>
+            <img src="user_default.png" className="rounded-full h-8 w-8	 " />
+          </div>
         )}
         {showModal ? <Modal /> : ""}
-        <div className="text-grey-darker mt-2 ml-2 flex justify-between items-start">
-          <img src="https://i.imgur.com/OZaT7jl.png" className="rounded-full " />
+        <div className="text-grey-darker mt-2 ml-2 flex justify-end items-end">
           {!inEditMode ? (
             <BiPencil
               className="m-2 text-gray-400 hover:text-gray-600"

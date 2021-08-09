@@ -24,20 +24,18 @@ export const Header = () => {
   return (
     <>
       <div className="flex  mt-4 ml-12 ">
-        <div className=" flex mx-4 text-blue-700 ">
+        <div className=" flex mx-4 text-blue-700 mt-2 ">
           <TiMessages className="mr-2" style={{ width: "25px", height: "28px" }} />
-          <h1 className="font-bold text-lg">1:1 with John Doe</h1>
+          <h1 className="header-title">1:1 with John Doe</h1>
         </div>
 
-        <button className="flex ml-6 mr-1 p-2 bg-yellow-500 hover:bg-yellow-600 rounded ">
-          <TiArrowForwardOutline className="my-1" />
+        <button className="flex mr-1 p-2 rounded text-white text-base end_meeting_button	 ">
+          <img src="/corner-up-right.png" className="my-1" />
           End Meeting
         </button>
-        <button className="flex mx-2 p-2 bg-gray-100 hover:bg-gray-200 rounded ">
-          Previous 1 :1
-        </button>
-        <button className="flex mx-2 p-2 bg-gray-100 hover:bg-gray-200 rounded ">
-          View 1 :1 from
+        <button className="flex mx-2 p-2 header_btns ">Previous 1 :1</button>
+        <button className="flex mx-2 p-2 header_btns ">
+          View 1 :1 <span className="from_header ml-1">from</span>
           <DatePicker
             className="rounded w-24 px-1 mx-1"
             selected={startDate}

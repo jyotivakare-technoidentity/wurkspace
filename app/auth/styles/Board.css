@@ -1,0 +1,32 @@
+.purple {
+  background: rgba(96, 91, 255, 0.24);
+}
+
+.blue {
+  background: rgba(71, 235, 255, 0.6);
+}
+
+.pink {
+  background: #ffc7d4;
+}
+
+.blue-light {
+  background: #92b1ee;
+}
+
+.yellow {
+  background: #f9da80;
+}
+
+.board_text {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  /* identical to box height */
+
+  letter-spacing: 0.02em;
+
+  color: #000000;
+}
