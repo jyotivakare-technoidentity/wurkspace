@@ -4,7 +4,6 @@ import { BiPencil, BiCheck } from "react-icons/bi"
 import { useState } from "react"
 import { useActionItem } from "app/core/hooks/useActionItem"
 import { Suspense } from "react"
-import { ActionDetails } from "app/auth/validations"
 
 const ActionInfo = () => {
   const actionItem = useActionItem()
