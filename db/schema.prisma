@@ -2,8 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = "postgres://postgres:wurkSpace@123@db.lgpdhfjbpjuwgshvzgtf.supabase.co:5432/postgres"
 }
 
 generator client {
@@ -63,3 +63,70 @@ model Token {
 // enum TokenType {
 //   RESET_PASSWORD
 // }
+
+model WS_LABELS {
+  LABEL_CODE Int    @id @default(autoincrement())
+  LABEL_TEXT String
+  TAG        String
+}
+
+model WS_USERS {
+  ID          Int    @id @default(autoincrement())
+  EMPLOYEE_ID String
+  USER_NAME   String
+  PASSWORD    String
+
+}
+
+model WS_EMPLOYEES {
+  ID         String @id
+  FIRST_NAME String
+  LAST_NAME  String
+  FULL_NAME  String
+  MANAGER_ID String
+  IMAGE      String
+}
+
+model WS_ONE_ON_ONES {
+  ID                Int      @id @default(autoincrement())
+  EMPLOYEE_USER_ID  Int
+  OOO_WITH_USER_ID  Int
+  START_TIME        DateTime @updatedAt
+  END_TIME          DateTime @updatedAt
+  SUBJECT           String
+  AGENDA            String
+  CREATED_BY        Int
+  CREATED_DATE      DateTime @default(now())
+  LAST_UPDATED_BY   Int
+  LAST_UPDATED_DATE DateTime @updatedAt
+
+}
+
+model WS_OOO_INTELLIGENT_CONTEXT_POINTS {
+  ID                 Int    @id @default(autoincrement())
+  CONTEXT_SECTION    String
+  DISPLAY_FLAG       String @default("Y")
+  CONTEXT_POINT_TEXT String
+  TAG_FOR_TOPIC      String
+  EMPLOYEE_ID        String
+  SOURCE_APPLICATION String
+}
+
+model WS_OOO_AGENDA_DETAILS {
+  ID         Int    @id @default(autoincrement())
+  OOO_ID     Int
+  TOPIC_TYPE String
+  CARD_TEXT  String
+  OICP_ID    Int
+  CREATED_BY Int
+}
+
+model WS_OOO_ACTION_ITEMS {
+  ID               Int    @id @default(autoincrement())
+  AGENDA_DETAIL_ID Int
+  CREATED_BY       Int
+  ACTION_TEXT      String
+  STATUS           String
+  ASSIGNEE_ID      Int
+
+}

@@ -23,7 +23,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className="flex  mt-4 ">
+      <div className="flex  mt-4 ml-12 ">
         <div className=" flex mx-4 text-blue-700 ">
           <TiMessages className="mr-2" style={{ width: "25px", height: "28px" }} />
           <h1 className="font-bold text-lg">1:1 with John Doe</h1>

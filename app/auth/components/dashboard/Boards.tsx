@@ -17,7 +17,7 @@ export const Boards = ({ title, color }: LayoutProps) => {
   return (
     <div>
       <div className=" flex">
-        <div className="bg-blue w-full p-0.5 min-h-screen	mt-10 flex font-sans">
+        <div className="bg-blue w-full p-0.5 min-h-screen	mt-6 flex font-sans">
           <div className="rounded bg-gray-100 w-64">
             <div
               className={`${color}	 p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
