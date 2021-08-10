@@ -98,7 +98,7 @@ export const Header = () => {
                 <li>
                   <div
                     className=" w-64 bg-fixed
-                    min-h-full bg-gray-200 rounded-lg"
+                    min-h-full bg-white rounded-lg"
                   >
                     <button
                       onClick={() => {
@@ -115,7 +115,7 @@ export const Header = () => {
                     </button>
 
                     <span className="mx-4 flex left-0 relative text-blue-700">
-                      <IoIosCog className="mr-2" style={{ height: "20px", width: "20px" }} />
+                      <img src="/Mask.png" className="mr-2" />
                       <h1 style={{ fontSize: "15px" }}> MyGoals</h1>
                     </span>
                     <ul>
