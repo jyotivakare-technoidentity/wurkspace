@@ -38,6 +38,7 @@
     "react": "alpha",
     "react-datepicker": "4.1.1",
     "react-dom": "alpha",
+    "react-drag-and-drop": "3.0.0",
     "react-final-form": "6.5.3",
     "react-icons": "4.2.0",
     "tailwindcss": "2.1.2",
