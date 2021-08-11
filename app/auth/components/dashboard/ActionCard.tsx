@@ -4,6 +4,10 @@ import { BiPencil, BiCheck } from "react-icons/bi"
 import { useState } from "react"
 import { useActionItem } from "app/core/hooks/useActionItem"
 import { Suspense } from "react"
+import actionCard from "app/auth/mutations/actionCard"
+import signup from "app/auth/mutations/signup"
+import { actionText } from "app/auth/validations"
+import { useMutation } from "blitz"
 
 const ActionInfo = () => {
   const actionItem = useActionItem()
@@ -19,7 +23,8 @@ const ActionInfo = () => {
 export const ActionCard = () => {
   const [showModal, setShowModal] = React.useState(false)
   const [inEditMode, setInEditMode] = useState(false)
-  const action = "Check the responsive layout on all devices"
+  const [actiontext, setactiontext] = useState("Check the responsive layout on all devices")
+  const [actionCardMutation] = useMutation(actionCard)
 
   return (
     <div className="text-sm p-2">
@@ -30,12 +35,15 @@ export const ActionCard = () => {
               type="text"
               defaultValue="Check the responsive layout on all devices"
               className="border rounded py-2 px-3 text-left overflow-visible max-w-xs"
+              onChange={(event) => {
+                setactiontext(event.target.value)
+              }}
             />
             <img src="user_default.png" className=" rounded-full h-8 w-8 	 " />
           </div>
         ) : (
           <div className="flex">
-            <a onClick={() => setShowModal(true)}>{action}</a>
+            <a onClick={() => setShowModal(true)}>{actiontext}</a>
             <img src="user_default.png" className="rounded-full h-8 w-8	 " />
           </div>
         )}
@@ -52,7 +60,8 @@ export const ActionCard = () => {
           ) : (
             <BiCheck
               className="m-2 text-xl text-blue-400 hover:text-blue-600 justify-end ml-8"
-              onClick={() => {
+              onClick={ () => {
+                    actionCardMutation(actiontext)
                 setInEditMode(false)
               }}
             />

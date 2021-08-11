@@ -15,10 +15,10 @@ export const LoginForm = (props: LoginFormProps) => {
     //<div className = "flex justify-end 	items-center h-screen mr-20" >
     <div className="shadow-2xl w-1/3 rounded-xl ml-40 mt-20 ">
       <div className="ml-8 m-2">
-        <h1 className="font-bold ml-4 text-2xl mt-20	">Login</h1>
+        <h1 className="font-bold ml-4 text-2xl mt-20">Login</h1>
 
         <Form
-          submitText="Login"
+          submitText="Google"
           schema={Login}
           initialValues={{ email: "", password: "" }}
           onSubmit={async (values) => {
@@ -59,12 +59,7 @@ export const LoginForm = (props: LoginFormProps) => {
 
         <button type="submit" className="w-1/3 bg-red-500 text-white p-1.5	rounded-lg m-4 ">
           {" "}
-          Google
-        </button>
-
-        <button type="submit" className="w-1/3 bg-purple-500 text-white p-1.5	rounded-lg m-4 ">
-          {" "}
-          Linkedin
+          <a href="/api/auth/google?redirectUrl=/dashboard">Google</a>
         </button>
       </div>
     </div>

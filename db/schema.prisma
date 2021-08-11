@@ -123,10 +123,10 @@ model WS_OOO_AGENDA_DETAILS {
 
 model WS_OOO_ACTION_ITEMS {
   ID               Int    @id @default(autoincrement())
-  AGENDA_DETAIL_ID Int
-  CREATED_BY       Int
+  AGENDA_DETAIL_ID Int?
+  CREATED_BY       Int?
   ACTION_TEXT      String
   STATUS           String
-  ASSIGNEE_ID      Int
+  ASSIGNEE_ID      Int?
 
 }
