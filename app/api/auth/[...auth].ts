@@ -4,7 +4,6 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth2"
 
 export default passportAuth({
   successRedirectUrl: "http://localhost:3000/dashboard",
-  errorRedirectUrl: "/",
   strategies: [
     {
       authenticateOptions: { scope: "openid email profile" },

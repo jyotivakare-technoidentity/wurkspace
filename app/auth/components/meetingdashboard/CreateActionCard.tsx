@@ -1,5 +1,5 @@
 import { Link } from "@chakra-ui/react"
-import { ActionCard } from "app/auth/components/dashboard/ActionCard"
+import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard"
 import React from "react"
 import { render } from "test/utils"
 

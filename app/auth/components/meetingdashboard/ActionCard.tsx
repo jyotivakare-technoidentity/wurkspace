@@ -1,36 +1,42 @@
 import React from "react"
-import { Modal } from "app/auth/components/dashboard/Modal"
+import { Modal } from "app/auth/components/meetingdashboard/Modal"
 import { BiPencil, BiCheck } from "react-icons/bi"
 import { useState } from "react"
 import { useActionItem } from "app/core/hooks/useActionItem"
 import { Suspense } from "react"
 import actionCard from "app/auth/mutations/actionCard"
 import signup from "app/auth/mutations/signup"
-import { actionText } from "app/auth/validations"
 import { useMutation } from "blitz"
 
-const ActionInfo = () => {
-  const actionItem = useActionItem()
+type LayoutProps = {
+  actionText?: string
+  id?: number
+}
 
+export const ActionCard = ({ actionText, id }: LayoutProps) => {
   return (
     <>
       {" "}
-      <div>{actionItem}</div>{" "}
+      <div>
+        <Suspense fallback="Loading.....">
+          <ActionInfo actionText={actionText} />
+        </Suspense>
+      </div>{" "}
     </>
   )
 }
 
-export const ActionCard = () => {
+const ActionInfo = ({ actionText, id }: LayoutProps) => {
   const [showModal, setShowModal] = React.useState(false)
   const [inEditMode, setInEditMode] = useState(false)
-  const [actiontext, setactiontext] = useState("Check the responsive layout on all devices")
+  const [actiontext, setactiontext] = useState(actionText)
   const [actionCardMutation] = useMutation(actionCard)
 
   return (
     <div className="text-sm p-2">
       <div className="bg-white p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter">
         {inEditMode ? (
-          <div className="flex">
+          <div className="flex justify-between">
             <input
               type="text"
               defaultValue="Check the responsive layout on all devices"
@@ -42,9 +48,14 @@ export const ActionCard = () => {
             <img src="user_default.png" className=" rounded-full h-8 w-8 	 " />
           </div>
         ) : (
-          <div className="flex">
-            <a onClick={() => setShowModal(true)}>{actiontext}</a>
-            <img src="user_default.png" className="rounded-full h-8 w-8	 " />
+          <div className="flex justify-between">
+            <a
+              onClick={() => setShowModal(true)}
+              className="truncate hover:overflow-visible hover:whitespace-normal"
+            >
+              {actiontext}
+            </a>
+            <img src="user_default.png" className="rounded-full h-8 w-8" />
           </div>
         )}
         {showModal ? <Modal /> : ""}
@@ -60,8 +71,8 @@ export const ActionCard = () => {
           ) : (
             <BiCheck
               className="m-2 text-xl text-blue-400 hover:text-blue-600 justify-end ml-8"
-              onClick={ () => {
-                    actionCardMutation(actiontext)
+              onClick={() => {
+                actionCardMutation(actiontext)
                 setInEditMode(false)
               }}
             />
