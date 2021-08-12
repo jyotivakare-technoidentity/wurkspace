@@ -1,7 +1,8 @@
-import { ActionCard } from "app/auth/components/dashboard/ActionCard"
-import { CreateActionCard } from "app/auth/components/dashboard/CreateActionCard"
-import React, { useState } from "react"
+import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard"
+import { CreateActionCard } from "app/auth/components/meetingdashboard/CreateActionCard"
+import React, { Suspense, useState } from "react"
 import { Link } from "@chakra-ui/react"
+import { useActionItem } from "app/core/hooks/useActionItem"
 
 type LayoutProps = {
   title?: string
@@ -9,11 +10,20 @@ type LayoutProps = {
 }
 
 export const Boards = ({ title, color }: LayoutProps) => {
-  const goToPreviousPage = () => {
-    return setActionCards([...actionCards, { component: <ActionCard /> }])
+  const actionItem = useActionItem()
+  const ActionCardsValues = () => {
+    return (
+      <>
+        {" "}
+        <div>
+          {actionItem.map((val) => (
+            <ActionCard key={val.ID} actionText={val.ACTION_TEXT} />
+          ))}
+        </div>{" "}
+      </>
+    )
   }
 
-  const [actionCards, setActionCards] = useState([{ component: <ActionCard /> }])
   return (
     <div>
       <div className=" flex">
@@ -24,12 +34,12 @@ export const Boards = ({ title, color }: LayoutProps) => {
             >
               {title}
             </div>
-            {actionCards.map((val) => (
-              <>{val.component}</>
-            ))}
+            <Suspense fallback="Loading...">
+              <ActionCardsValues />
+            </Suspense>
             <div className="flex items-center justify-center shadow-2xl m-3">
               <div className="rounded-full h-8 w-8 flex items-center justify-center flash_icons">
-                <Link onClick={goToPreviousPage}> +</Link>
+                +
               </div>
               <div className="rounded-full h-8 w-8 ml-8 flex items-center justify-center flash_icons">
                 <svg

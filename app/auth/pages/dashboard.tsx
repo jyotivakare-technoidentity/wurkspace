@@ -1,8 +1,8 @@
 import { useRouter, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Boards } from "app/auth/components/dashboard/Boards"
-import { Header } from "app/auth/components/dashboard/Header"
-import { SidebarWithHeader } from "../components/dashboard/Sidebar"
+import { Boards } from "app/auth/components/meetingdashboard/Boards"
+import { Header } from "app/auth/components/meetingdashboard/Header"
+import { SidebarWithHeader } from "../components/meetingdashboard/Sidebar"
 
 const DashBoard: BlitzPage = () => {
   const router = useRouter()
@@ -23,7 +23,6 @@ const DashBoard: BlitzPage = () => {
   )
 }
 
-DashBoard.redirectAuthenticatedTo = "/"
 DashBoard.getLayout = (page) => <Layout title="Dashboard">{page}</Layout>
 
 export default DashBoard

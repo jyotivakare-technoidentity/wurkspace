@@ -1,4 +1,4 @@
-import { AllActionSideBar } from "app/auth/components/dashboard/AllActionSidebar"
+import { AllActionSideBar } from "app/auth/components/meetingdashboard/AllActionSidebar"
 import { Link } from "blitz"
 import React from "react"
 import { useState } from "react"
