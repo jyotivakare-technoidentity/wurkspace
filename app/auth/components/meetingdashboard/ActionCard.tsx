@@ -37,7 +37,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
           <div className="flex justify-between">
             <input
               type="text"
-              defaultValue="Check the responsive layout on all devices"
+              defaultValue={actionText}
               className="border rounded py-2 px-3 text-left overflow-visible max-w-xs"
               onChange={(event) => {
                 setactiontext(event.target.value)

@@ -24,7 +24,7 @@ export const Modal = () => {
                   <div className="text-blue-700	">Emma.</div>
                 </div>
                 {/*body*/}
-                <div className="bg-purple-600 bg-opacity-25 p-3 font-medium font-sans ">
+                <div className="bg-purple-600 bg-opacity-25 p-3 font-medium  ">
                   <p>When are you most productive(Morning / AFternoon/ Evening)?</p>
                 </div>
                 <h1 className="mt-2 ml-6">Add Notes</h1>

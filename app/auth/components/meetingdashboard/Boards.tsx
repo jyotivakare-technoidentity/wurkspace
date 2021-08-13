@@ -1,5 +1,5 @@
 import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard"
-import React, { Suspense, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { useActionItem } from "app/core/hooks/useActionItem"
 import { Link, useMutation } from "blitz"
 import createActionCard from "app/auth/mutations/createActionCard"
@@ -31,6 +31,9 @@ export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: Lay
   const [createActionCardMutation] = useMutation(createActionCard)
   const [test, settest] = useState(false)
   const [actiontext, setactiontext] = useState("testing for creation card")
+  const testRefresh = () => {
+    settest(!test)
+  }
   return (
     <div>
       <div className=" flex">
@@ -44,22 +47,24 @@ export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: Lay
             {actionItemsDetails?.map((actionItem) => (
               <ActionCard actionText={actionItem.ACTION_TEXT} key={actionItem.ID} />
             ))}
+
             <div className="flex items-center justify-center shadow-2xl m-3">
-              <div className="rounded-full h-8 w-8 flex items-center justify-center flash_icons hover:cursor-pointer">
+              <div className="rounded-full h-6 w-6 flex items-center justify-center flash_icons hover:cursor-pointer">
                 <a
                   onClick={() => {
                     createActionCardMutation({ actiontext, agendaDetailId })
+                    testRefresh()
                   }}
                 >
                   <img src="/plusicon.png"></img>
                 </a>
               </div>
-              <div className="rounded-full h-8 w-8 ml-8 flex items-center justify-center flash_icons hover:cursor-pointer">
+              <div className="rounded-full h-6 w-6 ml-4 flex items-center justify-center flash_icons hover:cursor-pointer">
                 <a>
                   <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -75,8 +80,8 @@ export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: Lay
                       maskUnits="userSpaceOnUse"
                       x="3"
                       y="0"
-                      width="12"
-                      height="18"
+                      width="10"
+                      height="16"
                     >
                       <path
                         fillRule="evenodd"
@@ -86,7 +91,7 @@ export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: Lay
                       />
                     </mask>
                     <g mask="url(#mask0)">
-                      <rect width="18" height="18" fill="#0D1C2E" />
+                      <rect width="16" height="18" fill="#0D1C2E" />
                     </g>
                   </svg>
                 </a>
