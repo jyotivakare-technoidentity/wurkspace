@@ -113,20 +113,22 @@ model WS_OOO_INTELLIGENT_CONTEXT_POINTS {
 }
 
 model WS_OOO_AGENDA_DETAILS {
-  ID         Int    @id @default(autoincrement())
-  OOO_ID     Int
-  TOPIC_TYPE String
-  CARD_TEXT  String
-  OICP_ID    Int
-  CREATED_BY Int
+  ID           Int                   @id @default(autoincrement())
+  OOO_ID       Int
+  TOPIC_TYPE   String
+  CARD_TEXT    String
+  OICP_ID      Int
+  CREATED_BY   Int
+  ACTION_ITEMS WS_OOO_ACTION_ITEMS[]
 }
 
 model WS_OOO_ACTION_ITEMS {
-  ID               Int    @id @default(autoincrement())
-  AGENDA_DETAIL_ID Int?
-  CREATED_BY       Int?
-  ACTION_TEXT      String
-  STATUS           String
-  ASSIGNEE_ID      Int?
-
+  ID                      Int                    @id @default(autoincrement())
+  AGENDA_DETAIL_ID        Int?
+  CREATED_BY              Int?
+  ACTION_TEXT             String
+  STATUS                  String
+  ASSIGNEE_ID             Int?
+  WS_OOO_AGENDA_DETAILS   WS_OOO_AGENDA_DETAILS? @relation(fields: [wS_OOO_AGENDA_DETAILSID], references: [ID])
+  wS_OOO_AGENDA_DETAILSID Int?
 }

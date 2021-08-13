@@ -2,10 +2,8 @@ import React from "react"
 import { Modal } from "app/auth/components/meetingdashboard/Modal"
 import { BiPencil, BiCheck } from "react-icons/bi"
 import { useState } from "react"
-import { useActionItem } from "app/core/hooks/useActionItem"
 import { Suspense } from "react"
 import actionCard from "app/auth/mutations/actionCard"
-import signup from "app/auth/mutations/signup"
 import { useMutation } from "blitz"
 
 type LayoutProps = {
@@ -13,7 +11,7 @@ type LayoutProps = {
   id?: number
 }
 
-export const ActionCard = ({ actionText, id }: LayoutProps) => {
+export const ActionInfo = ({ actionText, id }: LayoutProps) => {
   return (
     <>
       {" "}
@@ -26,7 +24,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
   )
 }
 
-const ActionInfo = ({ actionText, id }: LayoutProps) => {
+export const ActionCard = ({ actionText, id }: LayoutProps) => {
   const [showModal, setShowModal] = React.useState(false)
   const [inEditMode, setInEditMode] = useState(false)
   const [actiontext, setactiontext] = useState(actionText)

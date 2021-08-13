@@ -1,9 +1,9 @@
-import { Ctx } from "blitz"
 import db from "db"
+import { Ctx } from "blitz"
 
 export default async function getActionItems(_ = null, { session }: Ctx) {
-  const actionItem = await db.wS_OOO_ACTION_ITEMS.findMany({
-    select: { ID: true, ACTION_TEXT: true, STATUS: true, ASSIGNEE_ID: true },
+  const actionItem = db.wS_OOO_AGENDA_DETAILS.findMany({
+    select: { ACTION_ITEMS: true, OOO_ID: true, TOPIC_TYPE: true, CARD_TEXT: true, OICP_ID: true },
   })
 
   return actionItem
