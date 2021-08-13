@@ -58,7 +58,9 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
         )}
         {showModal ? <Modal /> : ""}
         <div className="text-grey-darker mt-2 ml-2 flex items-center">
-          <span className="placeholder">Type / to open the items list</span>
+          <span className="placeholder opacity-0 hover:opacity-100">
+            Type / to open the items list
+          </span>
           {!inEditMode ? (
             <BiPencil
               className="m-2 text-gray-400 hover:text-gray-600 justify-end ml-8"

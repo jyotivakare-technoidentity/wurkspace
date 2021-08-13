@@ -117,6 +117,7 @@ model WS_OOO_AGENDA_DETAILS {
   OOO_ID       Int
   TOPIC_TYPE   String
   CARD_TEXT    String
+  COLOR        String                @default("purple")
   OICP_ID      Int
   CREATED_BY   Int
   ACTION_ITEMS WS_OOO_ACTION_ITEMS[]

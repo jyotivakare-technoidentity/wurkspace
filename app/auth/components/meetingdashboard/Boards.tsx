@@ -7,6 +7,7 @@ import createActionCard from "app/auth/mutations/createActionCard"
 type LayoutProps = {
   title?: string
   color?: string
+  agendaDetailId: number
   actionItemsDetails?: actionItem[]
 }
 
@@ -26,7 +27,7 @@ enum STATUS {
   CLOSED,
 }
 
-export const Boards = ({ title, color, actionItemsDetails }: LayoutProps) => {
+export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: LayoutProps) => {
   const [createActionCardMutation] = useMutation(createActionCard)
   const [test, settest] = useState(false)
   const [actiontext, setactiontext] = useState("testing for creation card")
@@ -44,16 +45,16 @@ export const Boards = ({ title, color, actionItemsDetails }: LayoutProps) => {
               <ActionCard actionText={actionItem.ACTION_TEXT} key={actionItem.ID} />
             ))}
             <div className="flex items-center justify-center shadow-2xl m-3">
-              <div className="rounded-full h-8 w-8 flex items-center justify-center flash_icons">
-                <button
+              <div className="rounded-full h-8 w-8 flex items-center justify-center flash_icons hover:cursor-pointer">
+                <a
                   onClick={() => {
-                    createActionCardMutation(actiontext)
+                    createActionCardMutation({ actiontext, agendaDetailId })
                   }}
                 >
-                  +
-                </button>
+                  <img src="/plusicon.png"></img>
+                </a>
               </div>
-              <div className="rounded-full h-8 w-8 ml-8 flex items-center justify-center flash_icons">
+              <div className="rounded-full h-8 w-8 ml-8 flex items-center justify-center flash_icons hover:cursor-pointer">
                 <a>
                   <svg
                     width="18"

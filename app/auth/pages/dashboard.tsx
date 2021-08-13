@@ -17,8 +17,9 @@ const ActionCardsValues = () => {
         {actionItemList.map((actionItem) => (
           <Boards
             title={actionItem.CARD_TEXT}
-            color="purple"
-            key={actionItem.OOO_ID}
+            color={actionItem.COLOR}
+            key={actionItem.ID}
+            agendaDetailId={actionItem.ID}
             actionItemsDetails={actionItem.ACTION_ITEMS}
           />
         ))}
@@ -43,6 +44,7 @@ const DashBoard: BlitzPage = () => {
   )
 }
 
+DashBoard.authenticate = { redirectTo: "/" }
 DashBoard.getLayout = (page) => <Layout title="Dashboard">{page}</Layout>
 
 export default DashBoard
