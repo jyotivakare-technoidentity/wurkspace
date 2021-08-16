@@ -2,10 +2,8 @@ import React from "react"
 import { Modal } from "app/auth/components/meetingdashboard/Modal"
 import { BiPencil, BiCheck } from "react-icons/bi"
 import { useState } from "react"
-import { useActionItem } from "app/core/hooks/useActionItem"
 import { Suspense } from "react"
 import actionCard from "app/auth/mutations/actionCard"
-import signup from "app/auth/mutations/signup"
 import { useMutation } from "blitz"
 
 type LayoutProps = {
@@ -13,7 +11,7 @@ type LayoutProps = {
   id?: number
 }
 
-export const ActionCard = ({ actionText, id }: LayoutProps) => {
+export const ActionInfo = ({ actionText, id }: LayoutProps) => {
   return (
     <>
       {" "}
@@ -26,7 +24,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
   )
 }
 
-const ActionInfo = ({ actionText, id }: LayoutProps) => {
+export const ActionCard = ({ actionText, id }: LayoutProps) => {
   const [showModal, setShowModal] = React.useState(false)
   const [inEditMode, setInEditMode] = useState(false)
   const [actiontext, setactiontext] = useState(actionText)
@@ -39,13 +37,13 @@ const ActionInfo = ({ actionText, id }: LayoutProps) => {
           <div className="flex justify-between">
             <input
               type="text"
-              defaultValue="Check the responsive layout on all devices"
+              defaultValue={actionText}
               className="border rounded py-2 px-3 text-left overflow-visible max-w-xs"
               onChange={(event) => {
                 setactiontext(event.target.value)
               }}
             />
-            <img src="user_default.png" className=" rounded-full h-8 w-8 	 " />
+            <img src="/user_default.png" className=" rounded-full h-8 w-8 	 " />
           </div>
         ) : (
           <div className="flex justify-between">
@@ -60,7 +58,9 @@ const ActionInfo = ({ actionText, id }: LayoutProps) => {
         )}
         {showModal ? <Modal /> : ""}
         <div className="text-grey-darker mt-2 ml-2 flex items-center">
-          <span className="placeholder">Type / to open the items list</span>
+          <span className="placeholder opacity-0 hover:opacity-100">
+            Type / to open the items list
+          </span>
           {!inEditMode ? (
             <BiPencil
               className="m-2 text-gray-400 hover:text-gray-600 justify-end ml-8"

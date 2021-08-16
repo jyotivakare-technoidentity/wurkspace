@@ -35,10 +35,19 @@ export const LoginForm = (props: LoginFormProps) => {
             }
           }}
         >
-          <button type="submit" className="w-1/3 bg-red-500 text-white p-1.5	rounded-lg m-4 ">
-            {" "}
-            <a href="/api/auth/google">Google</a>
-          </button>
+          <div className="flex flex-col justify-center items-center content-center ">
+            <div className="flex justify-center">
+              <h1 className="font-black	text-2xl mt-6 flex text-blue-700 ">
+                <img className="mr-4 h-8 w-8" src="logowurkspace.png"></img>WurkSpace
+              </h1>
+            </div>
+            <h2 className="font-semibold text-l mt-6">Welcome</h2>
+            <h3 className="font-normal text-l mt-4">Log in to wurkspace to continue.</h3>
+            <button type="submit" className="w-4/5 bg-red-500 text-white p-2 rounded-lg m-4">
+              {" "}
+              <a href="/api/auth/google">Continue with Google</a>
+            </button>
+          </div>
         </Form>
       </div>
     </div>
