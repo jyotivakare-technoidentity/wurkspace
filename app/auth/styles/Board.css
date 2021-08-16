@@ -1,0 +1,48 @@
+.purple {
+  background: rgba(96, 91, 255, 0.24);
+}
+
+.blue {
+  background: rgba(71, 235, 255, 0.6);
+}
+
+.pink {
+  background: #ffc7d4;
+}
+
+.blue-light {
+  background: #92b1ee;
+}
+
+.yellow {
+  background: #f9da80;
+}
+
+.board_text {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  /* identical to box height */
+
+  letter-spacing: 0.02em;
+
+  color: #000000;
+}
+
+.flash_icons {
+  background: #ffffff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+}
+
+.placeholder {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+
+  color: #9a9aa9;
+}
