@@ -71,20 +71,20 @@ model WS_LABELS {
 }
 
 model WS_USERS {
-  ID          Int    @id @default(autoincrement())
+  ID          Int     @id @default(autoincrement())
   EMPLOYEE_ID String
   USER_NAME   String
-  PASSWORD    String
+  PASSWORD    String?
 
 }
 
 model WS_EMPLOYEES {
-  ID         String @id
+  ID         String  @id
   FIRST_NAME String
-  LAST_NAME  String
-  FULL_NAME  String
+  LAST_NAME  String?
+  FULL_NAME  String?
   MANAGER_ID String
-  IMAGE      String
+  IMAGE      String  @default("/user_default.png")
 }
 
 model WS_ONE_ON_ONES {

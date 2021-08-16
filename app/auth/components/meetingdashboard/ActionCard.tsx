@@ -43,7 +43,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
                 setactiontext(event.target.value)
               }}
             />
-            <img src="user_default.png" className=" rounded-full h-8 w-8 	 " />
+            <img src="/user_default.png" className=" rounded-full h-8 w-8 	 " />
           </div>
         ) : (
           <div className="flex justify-between">

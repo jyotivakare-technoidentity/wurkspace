@@ -3,6 +3,9 @@ import React, { Suspense, useEffect, useState } from "react"
 import { useActionItem } from "app/core/hooks/useActionItem"
 import { Link, useMutation } from "blitz"
 import createActionCard from "app/auth/mutations/createActionCard"
+import CreateActionCard from "./CreateActionCard"
+import { useForceUpdate } from "@chakra-ui/react"
+import { BiWindows } from "react-icons/bi"
 
 type LayoutProps = {
   title?: string
@@ -29,11 +32,8 @@ enum STATUS {
 
 export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: LayoutProps) => {
   const [createActionCardMutation] = useMutation(createActionCard)
-  const [test, settest] = useState(false)
-  const [actiontext, setactiontext] = useState("testing for creation card")
-  const testRefresh = () => {
-    settest(!test)
-  }
+  const [actiontext, setactiontext] = useState("Please add the text")
+
   return (
     <div>
       <div className=" flex">
@@ -44,6 +44,7 @@ export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: Lay
             >
               {title}
             </div>
+
             {actionItemsDetails?.map((actionItem) => (
               <ActionCard actionText={actionItem.ACTION_TEXT} key={actionItem.ID} />
             ))}
@@ -51,9 +52,9 @@ export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: Lay
             <div className="flex items-center justify-center shadow-2xl m-3">
               <div className="rounded-full h-6 w-6 flex items-center justify-center flash_icons hover:cursor-pointer">
                 <a
-                  onClick={() => {
+                  onClick={(eent) => {
                     createActionCardMutation({ actiontext, agendaDetailId })
-                    testRefresh()
+                    location.reload(false)
                   }}
                 >
                   <img src="/plusicon.png"></img>
