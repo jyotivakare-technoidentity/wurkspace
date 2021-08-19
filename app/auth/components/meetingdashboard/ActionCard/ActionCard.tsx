@@ -1,14 +1,17 @@
 import React from "react"
-import { Modal } from "app/auth/components/meetingdashboard/Modal"
+import { Modal } from "app/auth/components/meetingdashboard/ActionCard/Modal"
 import { BiPencil, BiCheck } from "react-icons/bi"
 import { useState } from "react"
 import { Suspense } from "react"
 import actionCard from "app/auth/mutations/actionCard"
 import { useMutation } from "blitz"
+import { EditActionCard } from "./actions/EditActionCard"
+import { EditMode } from "./test.tsx"
+import Dropdown from "./actions/DropDown"
 
 type LayoutProps = {
   actionText?: string
-  id?: number
+  id: number
 }
 
 export const ActionInfo = ({ actionText, id }: LayoutProps) => {
@@ -17,7 +20,7 @@ export const ActionInfo = ({ actionText, id }: LayoutProps) => {
       {" "}
       <div>
         <Suspense fallback="Loading.....">
-          <ActionInfo actionText={actionText} />
+          <ActionInfo actionText={actionText} id={id} />
         </Suspense>
       </div>{" "}
     </>
@@ -26,9 +29,10 @@ export const ActionInfo = ({ actionText, id }: LayoutProps) => {
 
 export const ActionCard = ({ actionText, id }: LayoutProps) => {
   const [showModal, setShowModal] = React.useState(false)
-  const [inEditMode, setInEditMode] = useState(false)
   const [actiontext, setactiontext] = useState(actionText)
   const [actionCardMutation] = useMutation(actionCard)
+  const [dropDown, setdropDown] = useState(false)
+  const [inEditMode, setinEditMode] = useState(false)
 
   return (
     <div className="text-sm p-2">
@@ -57,26 +61,16 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
           </div>
         )}
         {showModal ? <Modal /> : ""}
-        <div className="text-grey-darker mt-2 ml-2 flex items-center">
+        <div className="text-grey-darker mt-2 ml-2 flex">
           <span className="placeholder opacity-0 hover:opacity-100">
             Type / to open the items list
           </span>
-          {!inEditMode ? (
-            <BiPencil
-              className="m-2 text-gray-400 hover:text-gray-600 justify-end ml-8"
-              onClick={() => {
-                setInEditMode(true)
-              }}
-            />
-          ) : (
-            <BiCheck
-              className="m-2 text-xl text-blue-400 hover:text-blue-600 justify-end ml-8"
-              onClick={() => {
-                actionCardMutation(actiontext)
-                setInEditMode(false)
-              }}
-            />
-          )}
+          <Dropdown
+            inEditMode={inEditMode}
+            setinEditMode={setinEditMode}
+            id={id}
+            actionText={actiontext}
+          />
         </div>
       </div>
     </div>

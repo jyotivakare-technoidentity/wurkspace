@@ -1,9 +1,9 @@
-import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard"
+import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard/ActionCard"
 import { useState } from "react"
 import { IoIosArrowForward, IoIosArrowBack, IoIosCalendar, IoIosCog } from "react-icons/io"
-import GoalsCard from "app/auth/components/meetingdashboard/GoalsCard"
-import InsightsCard from "app/auth/components/meetingdashboard/InsightsCard"
-import AlertCard from "app/auth/components/meetingdashboard/AlertCard"
+import GoalsCard from "app/auth/components/meetingdashboard/intelligentcontext/GoalsCard"
+import InsightsCard from "app/auth/components/meetingdashboard/intelligentcontext/InsightsCard"
+import AlertCard from "app/auth/components/meetingdashboard/intelligentcontext/AlertCard"
 import { SidebarWithHeader } from "app/auth/components/meetingdashboard/Sidebar"
 
 import {

@@ -10,19 +10,29 @@ const ActionCardsValues = () => {
   const [test, settest] = useState(false)
   const actionItemList = useActionItem()
 
+  const [actionRender, setactionRender] = useState(false)
+  const [actionItems, setActionItems] = useState<any>()
+
+  useEffect(() => {
+    setActionItems(actionItemList)
+  }, [actionRender, actionItemList])
+
   return (
     <>
       {" "}
       <div className="flex">
-        {actionItemList.map((actionItem) => (
-          <Boards
-            title={actionItem.CARD_TEXT}
-            color={actionItem.COLOR}
-            key={actionItem.ID}
-            agendaDetailId={actionItem.ID}
-            actionItemsDetails={actionItem.ACTION_ITEMS}
-          />
-        ))}
+        {actionItems &&
+          actionItems?.map((actionItem) => (
+            <Boards
+              title={actionItem.CARD_TEXT}
+              color={actionItem.COLOR}
+              key={actionItem.ID}
+              agendaDetailId={actionItem.ID}
+              actionItemsDetails={actionItem.ACTION_ITEMS}
+              setactionRender={setactionRender}
+              actionRender={actionRender}
+            />
+          ))}
       </div>{" "}
     </>
   )
