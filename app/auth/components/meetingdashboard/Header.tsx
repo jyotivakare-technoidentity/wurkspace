@@ -1,10 +1,9 @@
-import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard"
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { IoIosArrowForward, IoIosArrowBack, IoIosCalendar, IoIosCog } from "react-icons/io"
-import GoalsCard from "app/auth/components/meetingdashboard/GoalsCard"
-import InsightsCard from "app/auth/components/meetingdashboard/InsightsCard"
-import AlertCard from "app/auth/components/meetingdashboard/AlertCard"
-import { SidebarWithHeader } from "app/auth/components/meetingdashboard/Sidebar"
+import GoalsCard from "app/auth/components/meetingdashboard/intelligentcontext/GoalsCard"
+import InsightsCard from "app/auth/components/meetingdashboard/intelligentcontext/InsightsCard"
+import AlertCard from "app/auth/components/meetingdashboard/intelligentcontext/AlertCard"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 import {
   TiMessages,
@@ -14,6 +13,18 @@ import {
 } from "react-icons/ti"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import { BiCommentX } from "react-icons/bi"
+
+export const UserInfo = () => {
+  const userInfo = useCurrentUser()
+
+  return (
+    <div className=" flex mx-4 text-blue-700 mt-2 ">
+      <img src="/oneoneonemeeting.png" className="mr-2" style={{ width: "25px", height: "28px" }} />
+      <h1 className="header-title">1:1 with {userInfo?.name}</h1>
+    </div>
+  )
+}
 
 export const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -24,22 +35,16 @@ export const Header = () => {
   return (
     <>
       <div className="flex  mt-4 ml-12 ">
-        <div className=" flex mx-4 text-blue-700 mt-2 ">
-          <img
-            src="/oneoneonemeeting.png"
-            className="mr-2"
-            style={{ width: "25px", height: "28px" }}
-          />
-          <h1 className="header-title">1:1 with John Doe</h1>
-        </div>
-
+        <Suspense fallback="Loading...">
+          <UserInfo />
+        </Suspense>
         <button className="flex mr-1 p-0.5 w-40 rounded text-white text-base end_meeting_button	 ">
           <img src="/corner-up-right.png" className="my-2 ml-4" />
           <span className="ml-1 mt-1 mr-2">End Meeting</span>
         </button>
         <button className="flex mx-2 p-2 header_btns ">Previous 1 :1</button>
         <button className="flex mx-2 p-2 header_btns ">
-          View 1 :1 <span className="from_header ml-1">from</span>
+          View 1 :1 from
           <DatePicker
             className="rounded w-24 px-1 mx-1"
             selected={startDate}

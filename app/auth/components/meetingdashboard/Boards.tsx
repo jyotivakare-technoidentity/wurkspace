@@ -1,9 +1,8 @@
-import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard"
+import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard/ActionCard"
 import React, { Suspense, useEffect, useState } from "react"
 import { useActionItem } from "app/core/hooks/useActionItem"
 import { Link, useMutation } from "blitz"
 import createActionCard from "app/auth/mutations/createActionCard"
-import CreateActionCard from "./CreateActionCard"
 import { useForceUpdate } from "@chakra-ui/react"
 import { BiWindows } from "react-icons/bi"
 
@@ -15,7 +14,7 @@ type LayoutProps = {
 }
 
 type actionItem = {
-  ID?: number
+  ID: number
   AGENDA_DETAIL_ID?: number
   CREATED_BY?: number
   ACTION_TEXT?: string
@@ -30,7 +29,14 @@ enum STATUS {
   CLOSED,
 }
 
-export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: LayoutProps) => {
+export const Boards = ({
+  title,
+  color,
+  actionItemsDetails,
+  agendaDetailId,
+  actionRender,
+  setactionRender,
+}: LayoutProps) => {
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
 
@@ -46,7 +52,11 @@ export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: Lay
             </div>
 
             {actionItemsDetails?.map((actionItem) => (
-              <ActionCard actionText={actionItem.ACTION_TEXT} key={actionItem.ID} />
+              <ActionCard
+                actionText={actionItem.ACTION_TEXT}
+                key={actionItem.ID}
+                id={actionItem.ID}
+              />
             ))}
 
             <div className="flex items-center justify-center shadow-2xl m-3">
@@ -54,7 +64,7 @@ export const Boards = ({ title, color, actionItemsDetails, agendaDetailId }: Lay
                 <a
                   onClick={(eent) => {
                     createActionCardMutation({ actiontext, agendaDetailId })
-                    location.reload(false)
+                    setactionRender(!actionRender)
                   }}
                 >
                   <img src="/plusicon.png"></img>
