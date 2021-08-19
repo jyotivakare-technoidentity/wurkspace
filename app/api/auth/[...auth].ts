@@ -38,7 +38,9 @@ export default passportAuth({
             userId: user.id,
             roles: [user.role],
             source: "google",
+            image: profile._json["picture"],
           }
+
           return done(undefined, { publicData })
         }
       ),

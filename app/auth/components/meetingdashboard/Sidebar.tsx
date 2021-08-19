@@ -1,7 +1,20 @@
 import { AllActionSideBar } from "app/auth/components/meetingdashboard/AllActionSidebar"
-import { Link } from "blitz"
-import React from "react"
+import { Link, useSession } from "blitz"
+import React, { Suspense } from "react"
 import { useState } from "react"
+
+export const UserImage = () => {
+  const session = useSession()
+  return (
+    <div>
+      <img
+        className="object-cover w-8 h-8 mt-8 rounded-full absolute bottom-6"
+        src={session.image}
+        alt="Profile image"
+      />
+    </div>
+  )
+}
 
 export const SidebarWithHeader = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -12,11 +25,9 @@ export const SidebarWithHeader = () => {
         <img src="/logo_company.png" className="p-2 mt-1" alt="logo" />
         <img src="/bell.png" className="p-2 mt-1" alt="notification" />
         <img src="/users.png" className="p-2 mt-1" alt="users" />
-        <img
-          className="object-cover w-8 h-8 mt-8 rounded-full absolute bottom-6"
-          src="/user_footer.png"
-          alt="Profile image"
-        />
+        <Suspense fallback="Loading...">
+          <UserImage />
+        </Suspense>
       </div>
     </div>
   )

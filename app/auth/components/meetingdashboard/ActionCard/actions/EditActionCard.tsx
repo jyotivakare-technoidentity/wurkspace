@@ -13,7 +13,6 @@ type LayoutProps = {
 
 export const EditActionCard = (props: LayoutProps) => {
   const [actionCardMutation] = useMutation(actionCard)
-  console.log(props)
 
   return (
     <div>

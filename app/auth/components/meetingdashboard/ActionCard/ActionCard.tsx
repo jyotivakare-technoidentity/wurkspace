@@ -1,13 +1,11 @@
 import React from "react"
 import { Modal } from "app/auth/components/meetingdashboard/ActionCard/Modal"
-import { BiPencil, BiCheck } from "react-icons/bi"
 import { useState } from "react"
 import { Suspense } from "react"
 import actionCard from "app/auth/mutations/actionCard"
 import { useMutation } from "blitz"
-import { EditActionCard } from "./actions/EditActionCard"
-import { EditMode } from "./test.tsx"
 import Dropdown from "./actions/DropDown"
+import { useSession } from "blitz"
 
 type LayoutProps = {
   actionText?: string
@@ -33,6 +31,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
   const [actionCardMutation] = useMutation(actionCard)
   const [dropDown, setdropDown] = useState(false)
   const [inEditMode, setinEditMode] = useState(false)
+  const session = useSession()
 
   return (
     <div className="text-sm p-2">
@@ -57,7 +56,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
             >
               {actiontext}
             </a>
-            <img src="user_default.png" className="rounded-full h-8 w-8" />
+            <img src={session.image} className="rounded-full h-8 w-8" />
           </div>
         )}
         {showModal ? <Modal /> : ""}
