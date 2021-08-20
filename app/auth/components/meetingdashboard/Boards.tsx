@@ -14,6 +14,8 @@ type LayoutProps = {
   color?: string
   agendaDetailId: number
   actionItemsDetails?: actionItem[]
+  setactionRender?(value: React.SetStateAction<boolean>): void
+  actionRender?: boolean
 }
 
 type actionItem = {
