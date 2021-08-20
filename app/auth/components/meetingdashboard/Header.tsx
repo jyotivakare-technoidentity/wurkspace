@@ -14,14 +14,19 @@ import {
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { BiCommentX } from "react-icons/bi"
+import { useSession } from "blitz"
 
 export const UserInfo = () => {
   const userInfo = useCurrentUser()
+  const session = useSession()
+  const managerInfo = useCurrentUser(session.managerid)
 
   return (
     <div className=" flex mx-4 text-blue-700 mt-2 ">
       <img src="/oneoneonemeeting.png" className="mr-2" style={{ width: "25px", height: "28px" }} />
-      <h1 className="header-title">1:1 with {userInfo?.name}</h1>
+      <h1 className="header-title">
+        1:1 {userInfo?.name} - {managerInfo?.name}
+      </h1>
     </div>
   )
 }

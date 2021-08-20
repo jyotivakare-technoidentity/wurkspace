@@ -36,8 +36,10 @@ export default passportAuth({
 
           const publicData = {
             userId: user.id,
+            managerid: user.id + 1,
             roles: [user.role],
             source: "google",
+            firstname: profile.name.givenName,
             image: profile._json["picture"],
           }
 

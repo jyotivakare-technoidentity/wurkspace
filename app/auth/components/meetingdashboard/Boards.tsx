@@ -5,6 +5,9 @@ import { Link, useMutation } from "blitz"
 import createActionCard from "app/auth/mutations/createActionCard"
 import { useForceUpdate } from "@chakra-ui/react"
 import { BiWindows } from "react-icons/bi"
+import Test from "app/auth/components/meetingdashboard/intelligentcontext/test"
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
+import { v4 as uuid } from "uuid"
 
 type LayoutProps = {
   title?: string
@@ -42,6 +45,7 @@ export const Boards = ({
 
   return (
     <div>
+      <Test actionItemsDetails={actionItemsDetails} title={title} />
       <div className=" flex">
         <div className="bg-blue w-full p-0.5 min-h-screen	mt-6 flex">
           <div className="rounded bg-gray-100 w-64">
@@ -50,14 +54,6 @@ export const Boards = ({
             >
               {title}
             </div>
-
-            {actionItemsDetails?.map((actionItem) => (
-              <ActionCard
-                actionText={actionItem.ACTION_TEXT}
-                key={actionItem.ID}
-                id={actionItem.ID}
-              />
-            ))}
 
             <div className="flex items-center justify-center shadow-2xl m-3">
               <div className="rounded-full h-6 w-6 flex items-center justify-center flash_icons hover:cursor-pointer">

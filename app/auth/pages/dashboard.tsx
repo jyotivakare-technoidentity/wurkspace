@@ -4,7 +4,10 @@ import { Boards } from "app/auth/components/meetingdashboard/Boards"
 import { Header } from "app/auth/components/meetingdashboard/Header"
 import { SidebarWithHeader } from "../components/meetingdashboard/Sidebar"
 import { useActionItem } from "app/core/hooks/useActionItem"
-import { Component, Suspense, useEffect, useState } from "react"
+import React, { Component, Suspense, useEffect, useState } from "react"
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
+import { v4 as uuid } from "uuid"
+import ActionCard from "../components/meetingdashboard/ActionCard/ActionCard"
 
 const ActionCardsValues = () => {
   const [test, settest] = useState(false)
