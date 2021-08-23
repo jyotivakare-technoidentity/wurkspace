@@ -34,13 +34,18 @@
     "blitz": "0.38.6",
     "final-form": "4.20.2",
     "framer-motion": "3.2.0",
+    "passport": "0.4.1",
+    "passport-google-oauth2": "0.2.0",
+    "passport-google-oauth20": "2.0.0",
     "postcss": "8.3.6",
     "react": "alpha",
+    "react-beautiful-dnd": "13.1.0",
     "react-datepicker": "4.1.1",
     "react-dom": "alpha",
     "react-final-form": "6.5.3",
     "react-icons": "4.2.0",
     "tailwindcss": "2.1.2",
+    "uuid": "8.3.2",
     "zod": "3.5.1"
   },
   "devDependencies": {

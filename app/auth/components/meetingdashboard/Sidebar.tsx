@@ -1,15 +1,19 @@
 import { AllActionSideBar } from "app/auth/components/meetingdashboard/AllActionSidebar"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Link, useSession } from "blitz"
 import React, { Suspense } from "react"
 import { useState } from "react"
 
 export const UserImage = () => {
   const session = useSession()
+  const userInfo = useCurrentUser(session.userId)
+  let UserImage: string = userInfo?.image!
+
   return (
     <div>
       <img
         className="object-cover w-8 h-8 mt-8 rounded-full absolute bottom-6"
-        src={session.image}
+        src={UserImage}
         alt="Profile image"
       />
     </div>

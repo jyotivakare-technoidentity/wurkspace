@@ -1,27 +1,20 @@
-import { Suspense, useState } from "react"
+import React, { Suspense, useState } from "react"
+import { IntelligentContext } from "app/auth/components/meetingdashboard/intelligentcontext/InsightsSidebar"
 import { IoIosArrowForward, IoIosArrowBack, IoIosCalendar, IoIosCog } from "react-icons/io"
-import GoalsCard from "app/auth/components/meetingdashboard/intelligentcontext/GoalsCard"
-import InsightsCard from "app/auth/components/meetingdashboard/intelligentcontext/InsightsCard"
-import AlertCard from "app/auth/components/meetingdashboard/intelligentcontext/AlertCard"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-
-import {
-  TiMessages,
-  TiArrowForwardOutline,
-  TiArrowShuffle,
-  TiChartLineOutline,
-} from "react-icons/ti"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import { BiCommentX } from "react-icons/bi"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { useSession } from "blitz"
 
 export const UserInfo = () => {
-  const userInfo = useCurrentUser()
-
+  const session = useSession()
+  const userInfo = useCurrentUser(session.userId)
+  const managerInfo = useCurrentUser(userInfo?.managerid)
   return (
-    <div className=" flex mx-4 text-blue-700 mt-2 ">
-      <img src="/oneoneonemeeting.png" className="mr-2" style={{ width: "25px", height: "28px" }} />
-      <h1 className="header-title">1:1 with {userInfo?.name}</h1>
+    <div>
+      <h1 className="header-title">
+        1:1 {userInfo?.firstname} / {managerInfo?.firstname}
+      </h1>
     </div>
   )
 }
@@ -35,28 +28,35 @@ export const Header = () => {
   return (
     <>
       <div className="flex  mt-4 ml-12 ">
-        <Suspense fallback="Loading...">
-          <UserInfo />
-        </Suspense>
+        <div className=" flex mx-4 text-blue-700 mt-2 ">
+          <img
+            src="/oneoneonemeeting.png"
+            className="mr-2"
+            style={{ width: "25px", height: "28px" }}
+          />
+          <Suspense fallback="Loading.....">
+            <UserInfo />
+          </Suspense>
+        </div>
+
         <button className="flex mr-1 p-0.5 w-40 rounded text-white text-base end_meeting_button	 ">
           <img src="/corner-up-right.png" className="my-2 ml-4" />
           <span className="ml-1 mt-1 mr-2">End Meeting</span>
         </button>
         <button className="flex mx-2 p-2 header_btns ">Previous 1 :1</button>
         <button className="flex mx-2 p-2 header_btns ">
-          View 1 :1 from
+          View 1 :1 from <img src="/headercalender.png" className="mt-1 ml-2 mr-1"></img>
           <DatePicker
             className="rounded w-24 px-1 mx-1"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
-          <IoIosCalendar className="mr-2 mt-1" />/ to{" "}
+          / to
           <DatePicker
             className="rounded w-24 px-1 mx-1"
             selected={endDate}
             onChange={(date) => setEndDate(date)}
           />
-          <IoIosCalendar className=" mt-1" />
         </button>
         <button className="actionitem_btn p-2 px-4 justify-end ml-20">
           <p>
@@ -83,79 +83,10 @@ export const Header = () => {
             </span>
           </p>
         </button>
-        <button onClick={() => showSidebar()}>
-          {!sidebarOpen ? (
-            <span>
-              <IoIosArrowBack
-                className="absolute top-1 right-0"
-                style={{ height: "25px", width: "35px" }}
-              />
-            </span>
-          ) : (
-            <nav
-              className={
-                sidebarOpen
-                  ? "right-0 fixed top-0 "
-                  : "transition duration-500  transform translate-x-100 "
-              }
-            >
-              <ul className="justify-center" onClick={() => showSidebar}>
-                <li>
-                  <div
-                    className=" w-64 bg-fixed
-                    min-h-full bg-white rounded-lg"
-                  >
-                    <button
-                      onClick={() => {
-                        showSidebar()
-                      }}
-                      className="flex left-0 relative"
-                    >
-                      {
-                        <IoIosArrowForward
-                          style={{ height: "25px", width: "30px" }}
-                          className="m-2"
-                        />
-                      }
-                    </button>
-
-                    <span className="mx-4 flex left-0 relative text-blue-700">
-                      <img src="/Mask.png" className="mr-2" />
-                      <h1 style={{ fontSize: "15px" }}> MyGoals</h1>
-                    </span>
-                    <ul>
-                      <li>
-                        <GoalsCard />
-                      </li>
-                    </ul>
-                    <span className="mx-4 flex left-0 relative text-blue-700">
-                      <TiArrowShuffle className="mr-2" style={{ height: "20px", width: "20px" }} />
-                      <h1 style={{ fontSize: "15px" }}> Insights</h1>
-                    </span>
-                    <ul>
-                      <li>
-                        <InsightsCard />
-                      </li>
-                    </ul>
-                    <span className="mx-4 flex left-0 relative text-blue-700">
-                      <TiChartLineOutline
-                        className="mr-2"
-                        style={{ height: "20px", width: "20px" }}
-                      />
-                      <h1 style={{ fontSize: "15px" }}> Alerts</h1>
-                    </span>
-                    <ul>
-                      <li>
-                        <AlertCard />
-                        <AlertCard />
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </nav>
-          )}
-        </button>
+        <IntelligentContext
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        ></IntelligentContext>
       </div>
     </>
   )

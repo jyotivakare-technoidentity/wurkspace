@@ -30,15 +30,19 @@ export default passportAuth({
             create: {
               email,
               name: profile.displayName,
+              firstname: profile.name.givenName,
+              managerid: 1,
+              image: profile._json["picture"],
             },
             update: { email },
           })
 
           const publicData = {
             userId: user.id,
+            managerid: user.id + 1,
             roles: [user.role],
             source: "google",
-            image: profile._json["picture"],
+            firstname: profile.name.givenName,
           }
 
           return done(undefined, { publicData })

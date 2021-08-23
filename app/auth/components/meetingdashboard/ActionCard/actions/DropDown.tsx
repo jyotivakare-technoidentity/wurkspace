@@ -1,13 +1,10 @@
 import React, { ReactChild } from "react"
 import { BiPencil, BiCheck } from "react-icons/bi"
 import { useState } from "react"
-import actionCard from "app/auth/mutations/actionCard"
-import { useMutation } from "blitz"
 import { forwardRef, PropsWithoutRef, ComponentPropsWithoutRef } from "react"
 import EditActionCard from "./EditActionCard"
 import DeleteActionCard from "./DeleteActionCard"
 import CopyActionCard from "./CopyActionCard"
-import MoveActionCard from "./MoveActionCard"
 
 type LayoutProps = {
   actionText?: string
@@ -18,7 +15,7 @@ type LayoutProps = {
 
 export const Dropdown = (props: LayoutProps) => {
   return (
-    <div className="text-grey-darker mt-2 flex">
+    <div className="text-grey-darker mt-2 flex mr-1">
       <div id="wrapper">
         <ul id="menu">
           <li>
@@ -34,9 +31,6 @@ export const Dropdown = (props: LayoutProps) => {
               </li>
               <li>
                 <CopyActionCard actionText={props.actionText} agendaDetailId={props.id} />
-              </li>
-              <li>
-                <MoveActionCard actionText={props.actionText} agendaDetailId={props.id} />
               </li>
             </ul>
           </li>
