@@ -7,11 +7,13 @@ import { useState } from "react"
 export const UserImage = () => {
   const session = useSession()
   const userInfo = useCurrentUser(session.userId)
+  let UserImage: string = userInfo?.image!
+
   return (
     <div>
       <img
         className="object-cover w-8 h-8 mt-8 rounded-full absolute bottom-6"
-        src={userInfo?.image}
+        src={UserImage}
         alt="Profile image"
       />
     </div>

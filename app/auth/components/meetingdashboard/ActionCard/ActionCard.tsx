@@ -30,6 +30,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
   const [inEditMode, setinEditMode] = useState(false)
   const session = useSession()
   const userInfo = useCurrentUser(session.userId)
+  let UserImage: string = userInfo?.image!
 
   return (
     <div className="text-sm p-2">
@@ -44,7 +45,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
                 setactiontext(event.target.value)
               }}
             />
-            <img src={userInfo?.image} alt="image" className=" rounded-full h-8 w-8 	 " />
+            <img src={UserImage} alt="image" className=" rounded-full h-8 w-8 	 " />
           </div>
         ) : (
           <div className="flex justify-between">
@@ -54,7 +55,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
             >
               {actiontext}
             </a>
-            <img src={userInfo?.image} className="rounded-full h-8 w-8" />
+            <img src={UserImage} className="rounded-full h-8 w-8" />
           </div>
         )}
         {showModal ? <Modal /> : ""}
