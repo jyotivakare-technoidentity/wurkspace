@@ -30,6 +30,8 @@ export default passportAuth({
             create: {
               email,
               name: profile.displayName,
+              firstname: profile.name.givenName,
+              managerid: 1,
             },
             update: { email },
           })

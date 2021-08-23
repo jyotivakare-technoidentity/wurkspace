@@ -19,7 +19,6 @@ export const DeleteActionCard = (props: LayoutProps) => {
         size={20}
         className="m-2 text-gray-400 hover:text-gray-600 justify-end"
         onClick={() => {
-          alert(props.id)
           deleteActionCardMutation(props.id)
         }}
       />

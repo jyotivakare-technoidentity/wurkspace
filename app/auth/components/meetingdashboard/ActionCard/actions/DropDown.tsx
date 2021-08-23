@@ -18,7 +18,7 @@ type LayoutProps = {
 
 export const Dropdown = (props: LayoutProps) => {
   return (
-    <div className="text-grey-darker mt-2 flex">
+    <div className="text-grey-darker mt-2 flex mr-1">
       <div id="wrapper">
         <ul id="menu">
           <li>
@@ -34,9 +34,6 @@ export const Dropdown = (props: LayoutProps) => {
               </li>
               <li>
                 <CopyActionCard actionText={props.actionText} agendaDetailId={props.id} />
-              </li>
-              <li>
-                <MoveActionCard actionText={props.actionText} agendaDetailId={props.id} />
               </li>
             </ul>
           </li>

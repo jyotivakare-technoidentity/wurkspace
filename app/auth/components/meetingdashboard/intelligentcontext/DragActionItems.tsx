@@ -61,7 +61,7 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 }
 
-const Test = ({ actionItemsDetails, title }: LayoutProps) => {
+const DragActionItems = ({ actionItemsDetails, title }: LayoutProps) => {
   const itemsFromBackend = actionItemsDetails?.map((actionItem) => ({
     id: uuid(),
     content: (
@@ -75,13 +75,12 @@ const Test = ({ actionItemsDetails, title }: LayoutProps) => {
 
   const columnsFromBackend = {
     [uuid()]: {
-      name: title,
       items: itemsFromBackend,
     },
   }
   const [columns, setColumns] = useState(columnsFromBackend)
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
@@ -93,22 +92,12 @@ const Test = ({ actionItemsDetails, title }: LayoutProps) => {
               }}
               key={columnId}
             >
-              <h2>{column.name}</h2>
-              <div style={{ margin: 8 }}>
+              <div>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
                     return (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver ? "white" : "lightgrey",
-                          padding: 4,
-                          width: 250,
-                          minHeight: 500,
-                        }}
-                      >
-                        {column.items.map((item, index) => {
+                      <div {...provided.droppableProps} ref={provided.innerRef}>
+                        {column.items?.map((item, index) => {
                           return (
                             <Draggable key={item.id} draggableId={item.id} index={index}>
                               {(provided, snapshot) => {
@@ -119,11 +108,8 @@ const Test = ({ actionItemsDetails, title }: LayoutProps) => {
                                     {...provided.dragHandleProps}
                                     style={{
                                       userSelect: "none",
-                                      padding: 16,
-                                      margin: "0 0 8px 0",
-                                      minHeight: "50px",
-                                      backgroundColor: snapshot.isDragging ? "#263B4A" : "#456C86",
-                                      color: "white",
+                                      color: "black",
+                                      width: "275px",
                                       ...provided.draggableProps.style,
                                     }}
                                   >
@@ -148,4 +134,4 @@ const Test = ({ actionItemsDetails, title }: LayoutProps) => {
   )
 }
 
-export default Test
+export default DragActionItems

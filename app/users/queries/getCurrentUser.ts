@@ -6,7 +6,7 @@ export default async function getCurrentUser(id, { session }: Ctx) {
 
   const user = await db.user.findFirst({
     where: { id: id },
-    select: { id: true, name: true, email: true, role: true },
+    select: { id: true, name: true, email: true, role: true, firstname: true, managerid: true },
   })
 
   return user
