@@ -5,7 +5,6 @@ import { forwardRef, PropsWithoutRef, ComponentPropsWithoutRef } from "react"
 import EditActionCard from "./EditActionCard"
 import DeleteActionCard from "./DeleteActionCard"
 import CopyActionCard from "./CopyActionCard"
-import MoveActionCard from "./MoveActionCard"
 
 type LayoutProps = {
   actionText?: string

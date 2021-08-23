@@ -32,6 +32,7 @@ export default passportAuth({
               name: profile.displayName,
               firstname: profile.name.givenName,
               managerid: 1,
+              image: profile._json["picture"],
             },
             update: { email },
           })
@@ -42,7 +43,6 @@ export default passportAuth({
             roles: [user.role],
             source: "google",
             firstname: profile.name.givenName,
-            image: profile._json["picture"],
           }
 
           return done(undefined, { publicData })

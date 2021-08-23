@@ -22,6 +22,7 @@ model User {
   role           String   @default("USER")
   firstname      String?
   managerid      Int
+  image          String?
 
   tokens   Token[]
   sessions Session[]

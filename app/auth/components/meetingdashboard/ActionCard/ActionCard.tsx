@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Suspense } from "react"
 import Dropdown from "./actions/DropDown"
 import { useSession } from "blitz"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 type LayoutProps = {
   actionText?: string
@@ -28,6 +29,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
   const [actiontext, setactiontext] = useState(actionText)
   const [inEditMode, setinEditMode] = useState(false)
   const session = useSession()
+  const userInfo = useCurrentUser(session.userId)
 
   return (
     <div className="text-sm p-2">
@@ -42,7 +44,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
                 setactiontext(event.target.value)
               }}
             />
-            <img src={session?.image} className=" rounded-full h-8 w-8 	 " />
+            <img src={userInfo?.image} alt="image" className=" rounded-full h-8 w-8 	 " />
           </div>
         ) : (
           <div className="flex justify-between">
@@ -52,7 +54,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
             >
               {actiontext}
             </a>
-            <img src={session?.image} className="rounded-full h-8 w-8" />
+            <img src={userInfo?.image} className="rounded-full h-8 w-8" />
           </div>
         )}
         {showModal ? <Modal /> : ""}
