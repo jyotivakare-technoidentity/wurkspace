@@ -42,7 +42,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
                 setactiontext(event.target.value)
               }}
             />
-            <img src={session.image} className=" rounded-full h-8 w-8 	 " />
+            <img src={session?.image} className=" rounded-full h-8 w-8 	 " />
           </div>
         ) : (
           <div className="flex justify-between">
@@ -52,7 +52,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
             >
               {actiontext}
             </a>
-            <img src={session.image} className="rounded-full h-8 w-8" />
+            <img src={session?.image} className="rounded-full h-8 w-8" />
           </div>
         )}
         {showModal ? <Modal /> : ""}

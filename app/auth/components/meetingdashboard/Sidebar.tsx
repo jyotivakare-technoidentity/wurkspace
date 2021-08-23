@@ -9,7 +9,7 @@ export const UserImage = () => {
     <div>
       <img
         className="object-cover w-8 h-8 mt-8 rounded-full absolute bottom-6"
-        src={session.image}
+        src={session?.image}
         alt="Profile image"
       />
     </div>
