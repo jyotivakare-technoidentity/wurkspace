@@ -1,6 +1,6 @@
 import { ActionCard } from "app/auth/components/meetingdashboard/ActionCard/ActionCard"
 import React, { Suspense, useEffect, useState } from "react"
-import { useMutation } from "blitz"
+import { useMutation, useRouter } from "blitz"
 import createActionCard from "app/auth/mutations/createActionCard"
 import DragActionItems from "app/auth/components/meetingdashboard/intelligentcontext/DragActionItems"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
@@ -41,6 +41,7 @@ export const Boards = ({
 }: LayoutProps) => {
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
+  const router = useRouter()
 
   return (
     <div>
