@@ -1,6 +1,5 @@
 import { useRouter, BlitzPage, Routes, useSession } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Boards } from "app/auth/components/meetingdashboard/Boards"
 import { Header } from "app/auth/components/meetingdashboard/Header"
 import { SidebarWithHeader } from "../components/meetingdashboard/Sidebar"
 import { useActionItem } from "app/core/hooks/useActionItem"
