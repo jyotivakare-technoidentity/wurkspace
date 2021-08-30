@@ -2,14 +2,13 @@ import React, { ReactChild } from "react"
 import { BiCopyAlt, BiCheck } from "react-icons/bi"
 import { useState } from "react"
 import { useMutation } from "blitz"
-import { forwardRef, PropsWithoutRef, ComponentPropsWithoutRef } from "react"
 import createActionCard from "app/auth/mutations/createActionCard"
 
 type LayoutProps = {
   actionText?: string
   inEditMode?: boolean
   setinEditMode?(value: React.SetStateAction<boolean>): void
-  agendaDetailId: number
+  agendaDetailId: number | undefined
 }
 
 export const CopyActionCard = (props: LayoutProps) => {

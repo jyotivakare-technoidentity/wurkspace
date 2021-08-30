@@ -9,7 +9,7 @@ import DropDownItemsList from "./actions/DropDownItemsList"
 
 type LayoutProps = {
   actionText?: string
-  id: number
+  id?: number
 }
 
 export const ActionInfo = ({ actionText, id }: LayoutProps) => {

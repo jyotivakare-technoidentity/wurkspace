@@ -1,21 +1,22 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { v4 as uuid } from "uuid"
 import ActionCard from "../ActionCard/ActionCard"
 
 type LayoutProps = {
-  actionItemsDetails?: actionItem[]
+  actionItemsDetailsList?: WS_OOO_ACTION_ITEMS[]
   title?: string
+  test?: boolean
 }
 
-type actionItem = {
+type WS_OOO_ACTION_ITEMS = {
   ID: number
-  AGENDA_DETAIL_ID?: number
-  CREATED_BY?: number
-  ACTION_TEXT?: string
-  STATUS?: STATUS
-  ASSIGNEE_ID?: number
-  wS_OOO_AGENDA_DETAILSID?: number
+  AGENDA_DETAIL_ID?: number | null
+  CREATED_BY?: number | null
+  ACTION_TEXT?: string | undefined
+  STATUS?: string | null
+  ASSIGNEE_ID?: number | null
+  wS_OOO_AGENDA_DETAILSID?: number | null
 }
 
 enum STATUS {
@@ -61,8 +62,9 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 }
 
-const DragActionItems = ({ actionItemsDetails, title }: LayoutProps) => {
-  const itemsFromBackend = actionItemsDetails?.map((actionItem) => ({
+const DragActionItems = ({ actionItemsDetailsList, test }: LayoutProps) => {
+  const [actionItemsDetails, setactionItemsDetails] = useState(actionItemsDetailsList)
+  const itemsFromBackend = actionItemsDetailsList?.map((actionItem) => ({
     id: uuid(),
     content: (
       <ActionCard
@@ -78,7 +80,16 @@ const DragActionItems = ({ actionItemsDetails, title }: LayoutProps) => {
       items: itemsFromBackend,
     },
   }
+
   const [columns, setColumns] = useState(columnsFromBackend)
+  console.log(itemsFromBackend)
+  console.log("columns")
+  console.log(test)
+  useEffect(() => {
+    console.log("i am useeffect")
+    setColumns(columnsFromBackend)
+  }, [test])
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>

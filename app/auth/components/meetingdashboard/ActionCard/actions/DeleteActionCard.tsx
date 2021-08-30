@@ -7,7 +7,7 @@ type LayoutProps = {
   actionText?: string
   inEditMode?: boolean
   setinEditMode?(value: React.SetStateAction<boolean>): void
-  id: number
+  id: number | undefined
 }
 
 export const DeleteActionCard = (props: LayoutProps) => {

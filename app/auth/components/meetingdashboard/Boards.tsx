@@ -5,6 +5,7 @@ import createActionCard from "app/auth/mutations/createActionCard"
 import DragActionItems from "app/auth/components/meetingdashboard/intelligentcontext/DragActionItems"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { DiscussionCard } from "./ActionCard/DiscussionCard"
+import useForceUpdate from "use-force-update"
 
 type LayoutProps = {
   title?: string
@@ -42,6 +43,7 @@ export const Boards = ({
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
   const router = useRouter()
+  const forceUpdate = useForceUpdate()
 
   return (
     <div>
@@ -62,6 +64,7 @@ export const Boards = ({
                 <a
                   onClick={(eent) => {
                     createActionCardMutation({ actiontext, agendaDetailId })
+                    forceUpdate()
                     setactionRender(!actionRender)
                   }}
                 >
