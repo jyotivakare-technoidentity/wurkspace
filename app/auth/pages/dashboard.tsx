@@ -9,19 +9,14 @@ import { useState } from "react"
 import { Suspense } from "react"
 import DiscussionCard from "../components/meetingdashboard/ActionCard/DiscussionCard"
 import DragActionItems from "../components/meetingdashboard/intelligentcontext/DragActionItems"
-import { AiOutlineLoading } from "react-icons/ai"
 
 const ActionCardsValues = () => {
   const actionItems = useActionItem()
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
   const [loader, setloader] = useState(false)
-  const [dragActionItems, setdragActionItems] = useState([
-    { component: (props) => <DragActionItems {...props} /> },
-  ])
   const [test, settest] = useState(false)
   useEffect(() => {
-    console.log("i am useeffect2")
     settest(!test)
     setloader(false)
   }, [actionItems])
@@ -53,8 +48,8 @@ const ActionCardsValues = () => {
                       <div className="rounded-full h-6 w-6 flex items-center justify-center flash_icons hover:cursor-pointer">
                         <a
                           onClick={() => {
-                            const id = 1
-                            createActionCardMutation({ actiontext, id })
+                            const agendaDetailId = actionItem.ID
+                            createActionCardMutation({ actiontext, agendaDetailId })
                             setloader(true)
                           }}
                         >

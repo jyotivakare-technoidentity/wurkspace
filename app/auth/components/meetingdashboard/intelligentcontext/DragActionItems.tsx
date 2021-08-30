@@ -82,11 +82,7 @@ const DragActionItems = ({ actionItemsDetailsList, test }: LayoutProps) => {
   }
 
   const [columns, setColumns] = useState(columnsFromBackend)
-  console.log(itemsFromBackend)
-  console.log("columns")
-  console.log(test)
   useEffect(() => {
-    console.log("i am useeffect")
     setColumns(columnsFromBackend)
   }, [test])
 
