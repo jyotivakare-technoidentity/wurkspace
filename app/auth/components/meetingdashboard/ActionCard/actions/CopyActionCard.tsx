@@ -11,10 +11,9 @@ type LayoutProps = {
   agendaDetailId: number | undefined
 }
 
-export const CopyActionCard = (props: LayoutProps) => {
+export const CopyActionCard = ({ agendaDetailId, actionText }) => {
   const [createActionCardMutation] = useMutation(createActionCard)
-  const [actiontext, setactiontext] = useState(props.actionText)
-  const [agendaDetailId, setagendaDetailId] = useState(1)
+  const [actiontext, setactiontext] = useState(actionText)
 
   return (
     <div>

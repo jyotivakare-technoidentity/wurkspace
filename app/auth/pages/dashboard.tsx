@@ -35,7 +35,11 @@ const ActionCardsValues = () => {
                     >
                       {actionItem.CARD_TEXT}
                     </div>
-                    <DragActionItems actionItemsDetailsList={actionItem.ACTION_ITEMS} test={test} />
+                    <DragActionItems
+                      actionItemsDetailsList={actionItem.ACTION_ITEMS}
+                      test={test}
+                      agendaDetailid={actionItem.ID}
+                    />
 
                     {/* {dragActionItems.map(({ component: Component }) => (
                       <>

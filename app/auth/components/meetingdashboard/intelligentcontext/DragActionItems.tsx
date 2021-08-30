@@ -7,6 +7,7 @@ type LayoutProps = {
   actionItemsDetailsList?: WS_OOO_ACTION_ITEMS[]
   title?: string
   test?: boolean
+  agendaDetailid?: number | undefined
 }
 
 type WS_OOO_ACTION_ITEMS = {
@@ -17,12 +18,6 @@ type WS_OOO_ACTION_ITEMS = {
   STATUS?: string | null
   ASSIGNEE_ID?: number | null
   wS_OOO_AGENDA_DETAILSID?: number | null
-}
-
-enum STATUS {
-  OPEN,
-  INPROGRESS,
-  CLOSED,
 }
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -62,7 +57,7 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 }
 
-const DragActionItems = ({ actionItemsDetailsList, test }: LayoutProps) => {
+const DragActionItems = ({ actionItemsDetailsList, test, agendaDetailid }: LayoutProps) => {
   const [actionItemsDetails, setactionItemsDetails] = useState(actionItemsDetailsList)
   const itemsFromBackend = actionItemsDetailsList?.map((actionItem) => ({
     id: uuid(),
@@ -71,6 +66,7 @@ const DragActionItems = ({ actionItemsDetailsList, test }: LayoutProps) => {
         actionText={actionItem.ACTION_TEXT}
         key={actionItem.ACTION_TEXT}
         id={actionItem.ID}
+        agendaDetailid={agendaDetailid}
       />
     ),
   }))
