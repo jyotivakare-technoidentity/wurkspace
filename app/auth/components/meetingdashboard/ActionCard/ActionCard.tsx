@@ -10,6 +10,7 @@ import DropDownItemsList from "./actions/DropDownItemsList"
 type LayoutProps = {
   actionText?: string
   id?: number
+  agendaDetailid?: number
 }
 
 export const ActionInfo = ({ actionText, id }: LayoutProps) => {
@@ -25,7 +26,7 @@ export const ActionInfo = ({ actionText, id }: LayoutProps) => {
   )
 }
 
-export const ActionCard = ({ actionText, id }: LayoutProps) => {
+export const ActionCard = ({ actionText, id, agendaDetailid }: LayoutProps) => {
   const [showModal, setShowModal] = React.useState(false)
   const [showDropDown, setshowDropDown] = useState(false)
   const [actiontext, setactiontext] = useState(actionText)
@@ -68,6 +69,7 @@ export const ActionCard = ({ actionText, id }: LayoutProps) => {
             setinEditMode={setinEditMode}
             id={id}
             actionText={actiontext}
+            agendaDetailid={agendaDetailid}
           />
         </div>
       </div>

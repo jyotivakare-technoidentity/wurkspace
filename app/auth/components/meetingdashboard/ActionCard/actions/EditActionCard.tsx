@@ -8,20 +8,21 @@ import { forwardRef, PropsWithoutRef, ComponentPropsWithoutRef } from "react"
 type LayoutProps = {
   actionText?: string
   inEditMode?: boolean
+  actionCardId?: number | undefined
   setinEditMode?(value: React.SetStateAction<boolean>): void
 }
 
-export const EditActionCard = (props: LayoutProps) => {
+export const EditActionCard = ({ actionText, inEditMode, actionCardId, setinEditMode }) => {
   const [actionCardMutation] = useMutation(actionCard)
 
   return (
     <div>
-      {!props.inEditMode ? (
+      {!inEditMode ? (
         <BiPencil
           size={20}
           className="m-2 text-gray-400 hover:text-gray-600 justify-end"
           onClick={() => {
-            props.setinEditMode && props.setinEditMode(!props.inEditMode)
+            setinEditMode && setinEditMode(!inEditMode)
           }}
         />
       ) : (
@@ -29,8 +30,8 @@ export const EditActionCard = (props: LayoutProps) => {
           size={20}
           className="m-2 text-xl text-blue-400 hover:text-blue-600 justify-end"
           onClick={() => {
-            actionCardMutation(props.actionText)
-            props.setinEditMode && props.setinEditMode(!props.inEditMode)
+            actionCardMutation({ actionText, actionCardId })
+            setinEditMode && setinEditMode(!inEditMode)
           }}
         />
       )}

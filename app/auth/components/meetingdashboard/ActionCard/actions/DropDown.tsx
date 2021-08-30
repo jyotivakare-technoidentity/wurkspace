@@ -11,6 +11,7 @@ type LayoutProps = {
   inEditMode?: boolean
   setinEditMode?(value: React.SetStateAction<boolean>): void
   id: number | undefined
+  agendaDetailid?: number | undefined
 }
 
 export const Dropdown = (props: LayoutProps) => {
@@ -19,18 +20,26 @@ export const Dropdown = (props: LayoutProps) => {
       <div id="wrapper">
         <ul id="menu">
           <li>
-            <a href="#">
+            <a>
               <img src="threedots.png" className="float-right	ml-0" />
             </a>
             <ul id="tab1" className="w-max m-2">
               <li>
-                <EditActionCard setinEditMode={props.setinEditMode} inEditMode={props.inEditMode} />
+                <EditActionCard
+                  actionText={props.actionText}
+                  setinEditMode={props.setinEditMode}
+                  inEditMode={props.inEditMode}
+                  actionCardId={props.id}
+                />
               </li>
               <li>
                 <DeleteActionCard id={props.id} />
               </li>
               <li>
-                <CopyActionCard actionText={props.actionText} agendaDetailId={props.id} />
+                <CopyActionCard
+                  actionText={props.actionText}
+                  agendaDetailId={props.agendaDetailid}
+                />
               </li>
             </ul>
           </li>
