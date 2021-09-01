@@ -10,6 +10,9 @@ import { Suspense } from "react"
 import DiscussionCard from "../components/meetingdashboard/ActionCard/DiscussionCard"
 import DragActionItems from "../components/meetingdashboard/intelligentcontext/DragActionItems"
 
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
+
 const ActionCardsValues = () => {
   const actionItems = useActionItem()
   const [createActionCardMutation] = useMutation(createActionCard)
@@ -35,11 +38,11 @@ const ActionCardsValues = () => {
                     >
                       {actionItem.CARD_TEXT}
                     </div>
-                    <DragActionItems
+                    {/* <DragActionItems
                       actionItemsDetailsList={actionItem.ACTION_ITEMS}
                       test={test}
                       agendaDetailid={actionItem.ID}
-                    />
+                    /> */}
 
                     {/* {dragActionItems.map(({ component: Component }) => (
                       <>
@@ -79,15 +82,19 @@ const ActionCardsValues = () => {
 const DashBoard: BlitzPage = () => {
   const router = useRouter()
   return (
-    <div className="h-screen">
-      <Header />
-      <div className="flex ml-12">
-        <SidebarWithHeader />
-        <Suspense fallback="Loading...">
-          <ActionCardsValues />
-        </Suspense>
-      </div>
-    </div>
+    <>
+      <DndProvider backend={HTML5Backend}>
+        <div className="h-screen">
+          <Header />
+          <div className="flex ml-12">
+            <SidebarWithHeader />
+            <Suspense fallback="Loading...">
+              <ActionCardsValues />
+            </Suspense>
+          </div>
+        </div>
+      </DndProvider>
+    </>
   )
 }
 
