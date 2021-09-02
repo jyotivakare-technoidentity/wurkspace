@@ -1,4 +1,5 @@
 import Card from "./Card"
+import { useInsightItem } from "app/core/hooks/useInsightItem"
 
 export const InsightItems = [
   {
@@ -19,6 +20,7 @@ export const InsightItems = [
 ]
 
 export const InsightsCard = () => {
+  const insightItems = useInsightItem()
   return (
     <>
       {InsightItems.map((item, idx) => {
