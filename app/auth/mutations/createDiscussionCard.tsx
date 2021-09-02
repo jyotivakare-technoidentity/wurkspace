@@ -8,6 +8,7 @@ export default resolver.pipe(async ({ discussionPoint, agendaDetailId, displayFl
       AGENDA_DETAIL_ID: agendaDetailId,
       DISPLAY_FLAG: displayFlag,
     },
+    select: { ID: true, DISCUSSION_POINT: true, DISPLAY_FLAG: true },
   })
 
   return createDiscussionItems
