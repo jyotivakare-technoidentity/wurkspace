@@ -4,11 +4,14 @@ import createActionCard from "app/auth/mutations/createActionCard"
 import { useMutation } from "blitz"
 import { useDrop } from "react-dnd"
 import Card from "./Card"
+import DragActionItems from "./DragActionItems"
 
 const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => {
   const [createActionCardMutation] = useMutation(createActionCard)
   const [loader, setloader] = useState(false)
   const [actiontext, setactiontext] = useState("Please add the text")
+
+  // console.log("Action text col :", insightItem)
 
   // useEffect(() => {
   //   settest(!test)
@@ -42,20 +45,17 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
             <div
               className={`${actionItem.COLOR} board_text	 p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
             >
-              {actionItem.CARD_TEXT}
+              {actionItem.WS_LABELS?.LABEL_TEXT}
             </div>
-            {/* <DragActionItems
-                    actionItemsDetailsList={actionItem.ACTION_ITEMS}
-                    test={test}
-                    agendaDetailid={actionItem.ID}
-                  /> */}
-
-            {/* {insightItem.map((item, idx) => {
-              return (
-                <Card key={idx} text={item.text} btn_text={item.btn_text} id={item.id} idx={idx} />
-              )
-            })} */}
-            {cardText === actionItem.CARD_TEXT && <Card item={insightItem} />}
+            <DragActionItems
+              actionItemsDetailsList={actionItem.ACTION_ITEMS}
+              agendaDetailid={actionItem.ID}
+            />
+            {insightItem
+              .filter((i) => i.btn_text === actionItem.WS_LABELS?.LABEL_TEXT)
+              .map((item, idx) => {
+                return <Card key={idx} item={item} />
+              })}
             <DiscussionCard />
             {loader && <>Loading...</>}
             <div className="flex items-center justify-center shadow-2xl m-3">
@@ -70,7 +70,7 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
                     setloader(true)
                   }}
                 >
-                  <img src="/plusicon.png"></img>
+                  <img src="/plusicon.png" alt=""></img>
                 </a>
               </div>
               <div className="rounded-full h-6 w-6 ml-4 flex items-center justify-center flash_icons hover:cursor-pointer">

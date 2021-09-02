@@ -75,7 +75,7 @@ model WS_LABELS {
   LABEL_TEXT String
   TAG        String
 
-  WS_OOO_BOARD_DETAILS WS_OOO_BOARD_DETAILS[]
+  WS_OOO_BOARD_DETAILS WS_OOO_BOARD_DETAILS?
 }
 
 model WS_ONE_ON_ONES {
@@ -105,13 +105,14 @@ model WS_OOO_INTELLIGENT_CONTEXT_POINTS {
 }
 
 model WS_OOO_BOARD_DETAILS {
-  ID           Int                   @id @default(autoincrement())
-  OOO_ID       Int
-  AGENDA_TYPE  String
-  COLOR        String                @default("purple")
-  CREATED_BY   Int
-  ACTION_ITEMS WS_OOO_ACTION_ITEMS[]
-  WS_LABELS    WS_LABELS?            @relation(fields: [AGENDA_TYPE], references: [LABEL_CODE])
+  ID              Int                      @id @default(autoincrement())
+  OOO_ID          Int
+  AGENDA_TYPE     String
+  COLOR           String                   @default("purple")
+  CREATED_BY      Int
+  ACTION_ITEMS    WS_OOO_ACTION_ITEMS[]
+  DISCUSSION_CARD WS_OOO_DISCUSSION_CARD[]
+  WS_LABELS       WS_LABELS?               @relation(fields: [AGENDA_TYPE], references: [LABEL_CODE])
 }
 
 model WS_OOO_ACTION_ITEMS {
@@ -135,10 +136,12 @@ model WS_OOO_DISCUSSION_CARD {
   AGENDA_DETAIL_ID Int?
   CREATED_BY       Int?
   DISCUSSION_POINT String
-  DESCRIPTION      String
+  DESCRIPTION      String?
   DISPLAY_FLAG     Boolean
 
 
-  WS_OOO_ACTION_ITEMS WS_OOO_ACTION_ITEMS?
-  User                User?                @relation(fields: [CREATED_BY], references: [id])
+  WS_OOO_ACTION_ITEMS    WS_OOO_ACTION_ITEMS?
+  User                   User?                 @relation(fields: [CREATED_BY], references: [id])
+  WS_OOO_BOARD_DETAILS   WS_OOO_BOARD_DETAILS? @relation(fields: [wS_OOO_BOARD_DETAILSID], references: [ID])
+  wS_OOO_BOARD_DETAILSID Int?
 }

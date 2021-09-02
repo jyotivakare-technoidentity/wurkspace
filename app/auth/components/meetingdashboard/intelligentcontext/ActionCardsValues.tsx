@@ -15,89 +15,28 @@ import { InsightItems } from "./InsightsCard"
 import Card from "./Card"
 import DragActionItems from "./DragActionItems"
 import ActionTextCol from "./ActionTextCol"
-//import update from "immutability-helper"
-
+import Layout from "app/core/layouts/Layout"
+interface InsightItemsType {
+  id: number
+  text: string
+  btn_text: string
+}
 const ActionCardsValues = () => {
   const actionItems = useActionItem()
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
   const [loader, setloader] = useState(false)
   const [test, settest] = useState(false)
-  // useEffect(() => {
-  //   settest(!test)
-  //   setloader(false)
-  // }, [actionItems])
 
-  //  drag card
-
-  const [insightItem, setInsightItem] = useState([])
-
-  // const [{ isOver }, drop] = useDrop(() => ({
-  //   accept: "insight",
-  //   drop: (item) => addItemToBoard(item?.id),
-  //   collect: (monitor) => ({
-  //     isOver: !!monitor.isOver(),
-  //   }),
-
-  //   // hover
-  // }))
-
-  // const handleDrop = useCallback(
-  //   (index: number, item: { name: string }) => {
-  //     console.log("dropped");
-  //     const { name } = item;
-  //     console.log(item);
-  //     setDroppedBoxNames(
-  //       update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
-  //     );
-  //     // setDustbins(update(dustbins, { $merge: { b: 6, c: 7 } }));
-  //     setDustbins(
-  //       update(dustbins, {
-  //         [index]: {
-  //           b: {
-  //             $set: item
-  //           }
-  //         }
-  //       })
-  //     );
-  //   },
-  //   [droppedBoxNames, dustbins]
-  // );
-
+  const [insightItem, setInsightItem] = useState<(InsightItemsType | undefined)[]>([]) // Drop card
   const onDrop = (item, index) => {
-    console.log("item  : " + item.id + " index of the card :" + index)
-    console.log("inndexxxxxxx   :" + InsightItems[item.id - 1]?.btn_text)
+    // console.log("item  : " + item.id + " index of the card :" + index)
+    // console.log("btn_text   :" + InsightItems[item.id - 1]?.btn_text)
 
-    //setInsightItem([...insightItem, InsightItems?[item.id - 1]])
-
-    // setItems((prevState) => {
-    //   const newItems = prevState
-    //     .filter((i) => i.id !== item.id)
-    //     .concat({ ...item, status, icon: mapping.icon });
-    //   return [...newItems];
-    // });
-
-    // setInsightItem((prevState) => {
-    //   const newItems = prevState.filter((i) => i.id !== item.id).concat({ ...InsightItemsList })
-    //   return [...newItems]
-    // })
+    // setInsightItem(update(insightItem, { $push: [InsightItems[item.id - 1]] }))
+    setInsightItem((prevItems) => [...prevItems, InsightItems[item.id - 1]])
   }
-  console.log(insightItem)
-
-  // const addItemToBoard = (id) => {
-  //   // const InsightItemsList = InsightItems.filter((item) => id === item.id);
-  //   // setInsightItem(insightItem.splice(id, 0, InsightItemsList[0]))
-
-  //   setInsightItem(() => {
-  //     const InsightItemsList = InsightItems.filter((item) => id === item.id)
-  //     // InsightItemsList.splice(id, 0, InsightItemsList[0]);
-  //     return [...InsightItemsList]
-  //     console.log(InsightItemsList)
-  //   })
-
-  //   // console.log(insightItem)
-  // }
-  // console.log(insightItem)
+  console.log("insight items :", insightItem)
 
   return (
     <>
@@ -110,7 +49,7 @@ const ActionCardsValues = () => {
               onDrop={onDrop}
               index={idx}
               insightItem={insightItem}
-              cardText={actionItem.AGENDA_TYPE}
+              cardText={actionItem.WS_LABELS?.LABEL_TEXT}
             />
           </div>
         ))}
@@ -119,7 +58,7 @@ const ActionCardsValues = () => {
   )
 }
 
-// ActionCardsValues.authenticate = { redirectTo: "/" }
-// ActionCardsValues.getLayout = (page) => <Layout title="ActionCardsValues">{page}</Layout>
+ActionCardsValues.authenticate = { redirectTo: "/" }
+ActionCardsValues.getLayout = (page) => <Layout title="ActionCardsValues">{page}</Layout>
 
 export default ActionCardsValues
