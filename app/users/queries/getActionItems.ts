@@ -8,6 +8,7 @@ export default async function getActionItems(_ = null, { session }: Ctx) {
       ID: true,
       OOO_ID: true,
       COLOR: true,
+      AGENDA_TYPE: true,
     },
   })
 
