@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = "postgres://postgres:wurkSpace@123@db.lgpdhfjbpjuwgshvzgtf.supabase.co:5432/postgres"
+  url      = "postgresql://postgres:wurkspace@123@db.fmgcguyldblilwdvgaut.supabase.co:5432/postgres"
 }
 
 generator client {
@@ -11,7 +11,6 @@ generator client {
 }
 
 // --------------------------------------
-
 model User {
   id             Int      @id @default(autoincrement())
   createdAt      DateTime @default(now())
@@ -23,9 +22,13 @@ model User {
   firstname      String?
   managerid      Int
   image          String?
+  lastname       String?
 
-  tokens   Token[]
-  sessions Session[]
+  tokens                  Token[]
+  sessions                Session[]
+  WS_OOO_DISCUSSION_CARDS WS_OOO_DISCUSSION_CARD[]
+  WS_OOO_ACTION_ITEMS     WS_OOO_ACTION_ITEMS[]
+  WS_ONE_ON_ONES          WS_ONE_ON_ONES[]
 }
 
 model Session {
@@ -68,41 +71,27 @@ model Token {
 // }
 
 model WS_LABELS {
-  LABEL_CODE Int    @id @default(autoincrement())
+  LABEL_CODE String @id
   LABEL_TEXT String
   TAG        String
-}
 
-model WS_USERS {
-  ID          Int     @id @default(autoincrement())
-  EMPLOYEE_ID String
-  USER_NAME   String
-  PASSWORD    String?
-
-}
-
-model WS_EMPLOYEES {
-  ID         String  @id
-  FIRST_NAME String
-  LAST_NAME  String?
-  FULL_NAME  String?
-  MANAGER_ID String
-  IMAGE      String  @default("/user_default.png")
+  WS_OOO_BOARD_DETAILS WS_OOO_BOARD_DETAILS[]
 }
 
 model WS_ONE_ON_ONES {
-  ID                Int      @id @default(autoincrement())
-  EMPLOYEE_USER_ID  Int
-  OOO_WITH_USER_ID  Int
-  START_TIME        DateTime @updatedAt
-  END_TIME          DateTime @updatedAt
-  SUBJECT           String
-  AGENDA            String
-  CREATED_BY        Int
-  CREATED_DATE      DateTime @default(now())
-  LAST_UPDATED_BY   Int
-  LAST_UPDATED_DATE DateTime @updatedAt
+  ID                   Int      @id @default(autoincrement())
+  EMPLOYEE_ID          Int
+  OOO_WITH_EMPLOYEE_ID Int
+  SCHEDULED_TIME       DateTime
+  START_TIME           DateTime @updatedAt
+  END_TIME             DateTime @updatedAt
+  CREATED_BY           Int
+  CREATED_DATE         DateTime @default(now())
+  LAST_UPDATED_BY      Int
+  LAST_UPDATED_DATE    DateTime @updatedAt
 
+
+  User User? @relation(fields: [CREATED_BY], references: [id])
 }
 
 model WS_OOO_INTELLIGENT_CONTEXT_POINTS {
@@ -115,24 +104,41 @@ model WS_OOO_INTELLIGENT_CONTEXT_POINTS {
   SOURCE_APPLICATION String
 }
 
-model WS_OOO_AGENDA_DETAILS {
+model WS_OOO_BOARD_DETAILS {
   ID           Int                   @id @default(autoincrement())
   OOO_ID       Int
-  TOPIC_TYPE   String
-  CARD_TEXT    String
+  AGENDA_TYPE  String
   COLOR        String                @default("purple")
-  OICP_ID      Int
   CREATED_BY   Int
   ACTION_ITEMS WS_OOO_ACTION_ITEMS[]
+  WS_LABELS    WS_LABELS?            @relation(fields: [AGENDA_TYPE], references: [LABEL_CODE])
 }
 
 model WS_OOO_ACTION_ITEMS {
-  ID                      Int                    @id @default(autoincrement())
-  AGENDA_DETAIL_ID        Int?
-  CREATED_BY              Int?
-  ACTION_TEXT             String
-  STATUS                  String
-  ASSIGNEE_ID             Int?
-  WS_OOO_AGENDA_DETAILS   WS_OOO_AGENDA_DETAILS? @relation(fields: [wS_OOO_AGENDA_DETAILSID], references: [ID])
-  wS_OOO_AGENDA_DETAILSID Int?
+  ID                     Int                     @id @default(autoincrement())
+  AGENDA_DETAIL_ID       Int?
+  DISCUSSION_CARD_ID     Int?
+  CREATED_BY             Int?
+  ACTION_TEXT            String?
+  ACTION_DESCRIPTION     String?
+  STATUS                 String?
+  ASSIGNEE_ID            Int?
+  CREATED_DATE           DateTime                @default(now())
+  DUE_DATE               DateTime?
+  WS_OOO_BOARD_DETAILS   WS_OOO_BOARD_DETAILS?   @relation(fields: [AGENDA_DETAIL_ID], references: [ID])
+  WS_OOO_DISCUSSION_CARD WS_OOO_DISCUSSION_CARD? @relation(fields: [DISCUSSION_CARD_ID], references: [ID])
+  User                   User?                   @relation(fields: [CREATED_BY], references: [id])
+}
+
+model WS_OOO_DISCUSSION_CARD {
+  ID               Int     @id @default(autoincrement())
+  AGENDA_DETAIL_ID Int?
+  CREATED_BY       Int?
+  DISCUSSION_POINT String
+  DESCRIPTION      String
+  DISPLAY_FLAG     Boolean
+
+
+  WS_OOO_ACTION_ITEMS WS_OOO_ACTION_ITEMS?
+  User                User?                @relation(fields: [CREATED_BY], references: [id])
 }

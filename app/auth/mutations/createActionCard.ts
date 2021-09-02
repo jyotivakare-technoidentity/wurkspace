@@ -7,7 +7,7 @@ export default resolver.pipe(async ({ actiontext, agendaDetailId }) => {
       ACTION_TEXT: actiontext,
       AGENDA_DETAIL_ID: agendaDetailId,
       STATUS: "INPROGRESS",
-      wS_OOO_AGENDA_DETAILSID: agendaDetailId,
+      WS_OOO_BOARD_DETAILS: agendaDetailId,
     },
   })
 
