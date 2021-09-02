@@ -9,7 +9,7 @@ import { SidebarWithHeader } from "app/auth/components/meetingdashboard/Sidebar"
 import ActionCardsValues from "../components/meetingdashboard/intelligentcontext/ActionCardsValues"
 
 const DashBoard: BlitzPage = () => {
-  const router = useRouter()
+  // const router = useRouter()
   return (
     <>
       <DndProvider backend={HTML5Backend}>
