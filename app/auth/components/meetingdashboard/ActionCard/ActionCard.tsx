@@ -11,6 +11,7 @@ type LayoutProps = {
   actionText?: string
   id?: number
   agendaDetailid?: number
+  discussionCard?: any
 }
 
 export const ActionInfo = ({ actionText, id }: LayoutProps) => {
@@ -26,7 +27,7 @@ export const ActionInfo = ({ actionText, id }: LayoutProps) => {
   )
 }
 
-export const ActionCard = ({ actionText, id, agendaDetailid }: LayoutProps) => {
+export const ActionCard = ({ actionText, id, agendaDetailid, discussionCard }: LayoutProps) => {
   const [showModal, setShowModal] = React.useState(false)
   const [showDropDown, setshowDropDown] = useState(false)
   const [actiontext, setactiontext] = useState(actionText)

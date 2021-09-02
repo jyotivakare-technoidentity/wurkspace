@@ -8,6 +8,7 @@ export default async function getActionItems(_ = null, { session }: Ctx) {
         select: {
           WS_OOO_DISCUSSION_CARD: {
             select: {
+              ID: true,
               AGENDA_DETAIL_ID: true,
               DESCRIPTION: true,
               DISPLAY_FLAG: true,

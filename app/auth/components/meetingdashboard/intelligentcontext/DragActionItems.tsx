@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { v4 as uuid } from "uuid"
 import ActionCard from "../ActionCard/ActionCard"
+import DiscussionCard from "../ActionCard/DiscussionCard"
 
 type LayoutProps = {
   actionItemsDetailsList?: WS_OOO_ACTION_ITEMS[]
@@ -67,6 +68,7 @@ const DragActionItems = ({ actionItemsDetailsList, test, agendaDetailid }: Layou
         key={actionItem.ACTION_TEXT}
         id={actionItem.ID}
         agendaDetailid={agendaDetailid}
+        discussionCard={actionItem}
       />
     ),
   }))
@@ -83,56 +85,58 @@ const DragActionItems = ({ actionItemsDetailsList, test, agendaDetailid }: Layou
   }, [test])
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
-        {Object.entries(columns).map(([columnId, column], index) => {
-          return (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-              key={columnId}
-            >
-              <div>
-                <Droppable droppableId={columnId} key={columnId}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div {...provided.droppableProps} ref={provided.innerRef}>
-                        {column.items?.map((item, index) => {
-                          return (
-                            <Draggable key={item.id} draggableId={item.id} index={index}>
-                              {(provided, snapshot) => {
-                                return (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={{
-                                      userSelect: "none",
-                                      color: "black",
-                                      width: "275px",
-                                      ...provided.draggableProps.style,
-                                    }}
-                                  >
-                                    {item.content}
-                                  </div>
-                                )
-                              }}
-                            </Draggable>
-                          )
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    )
-                  }}
-                </Droppable>
+    <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
+          {Object.entries(columns).map(([columnId, column], index) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+                key={columnId}
+              >
+                <div>
+                  <Droppable droppableId={columnId} key={columnId}>
+                    {(provided, snapshot) => {
+                      return (
+                        <div {...provided.droppableProps} ref={provided.innerRef}>
+                          {column.items?.map((item, index) => {
+                            return (
+                              <Draggable key={item.id} draggableId={item.id} index={index}>
+                                {(provided, snapshot) => {
+                                  return (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      style={{
+                                        userSelect: "none",
+                                        color: "black",
+                                        width: "275px",
+                                        ...provided.draggableProps.style,
+                                      }}
+                                    >
+                                      {item.content}
+                                    </div>
+                                  )
+                                }}
+                              </Draggable>
+                            )
+                          })}
+                          {provided.placeholder}
+                        </div>
+                      )
+                    }}
+                  </Droppable>
+                </div>
               </div>
-            </div>
-          )
-        })}
-      </DragDropContext>
+            )
+          })}
+        </DragDropContext>
+      </div>
     </div>
   )
 }

@@ -16,6 +16,7 @@ import Card from "./Card"
 import DragActionItems from "./DragActionItems"
 import ActionTextCol from "./ActionTextCol"
 import Layout from "app/core/layouts/Layout"
+import DiscussionCard from "../ActionCard/DiscussionCard"
 interface InsightItemsType {
   id: number
   text: string
@@ -36,7 +37,7 @@ const ActionCardsValues = () => {
     // setInsightItem(update(insightItem, { $push: [InsightItems[item.id - 1]] }))
     setInsightItem((prevItems) => [...prevItems, InsightItems[item.id - 1]])
   }
-  console.log("insight items :", insightItem)
+  //console.log("insight items :", insightItem)
 
   return (
     <>
