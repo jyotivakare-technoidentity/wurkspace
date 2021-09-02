@@ -24,7 +24,7 @@ export const DiscussionCard = ({ values }) => {
   const [discussionText, setDiscissionText] = useState(values.DISPLAY_FLAG)
   const [actiontext, setactiontext] = useState(values.DISCUSSION_POINT)
   const [updateDisplayMutation] = useMutation(updatedisplayflag)
-  console.log(values)
+  //console.log(values)
   const session = useSession()
   const userInfo = useCurrentUser(session.userId)
   let UserImage: string = userInfo?.image!

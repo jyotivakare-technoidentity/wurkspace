@@ -12,7 +12,7 @@ export default function DropDownItemsList() {
               type="text"
               placeholder="Type / to open the items list"
               onKeyPress={(event) => {
-                console.log(event.code)
+                //console.log(event.code)
                 if (event.code === "Slash") open = true
               }}
             ></input>
