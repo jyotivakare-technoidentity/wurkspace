@@ -12,6 +12,12 @@ import Card from "./Card"
 import ActionTextCol from "./ActionTextCol"
 import Layout from "app/core/layouts/Layout"
 
+interface InsightItemsType {
+  id: number
+  text: string
+  btn_text: string
+}
+
 const ActionCardsValues = () => {
   const actionItems = useActionItem()
   const [createActionCardMutation] = useMutation(createActionCard)
@@ -19,10 +25,10 @@ const ActionCardsValues = () => {
   const [loader, setloader] = useState(false)
   const [test, settest] = useState(false)
 
-  const [insightItem, setInsightItem] = useState([])
+  const [insightItem, setInsightItem] = useState<(InsightItemsType | undefined)[]>([])
   // Drop card
   const onDrop = (item, index) => {
-    setInsightItem((prevItems) => [...prevItems, InsightItems[item.id - 1]])
+    setInsightItem((prevState) => [...prevState, InsightItems[item.id - 1]])
   }
   console.log("insight items :", insightItem)
 
