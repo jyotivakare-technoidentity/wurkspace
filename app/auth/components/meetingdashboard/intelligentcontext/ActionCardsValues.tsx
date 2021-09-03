@@ -17,12 +17,15 @@ import DragActionItems from "./DragActionItems"
 import ActionTextCol from "./ActionTextCol"
 import Layout from "app/core/layouts/Layout"
 import DiscussionCard from "../ActionCard/DiscussionCard"
+import { useSession } from "blitz"
+
 interface InsightItemsType {
   id: number
   text: string
   btn_text: string
 }
 const ActionCardsValues = () => {
+  const session = useSession()
   const actionItems = useActionItem(session.managerid)
   console.log(actionItems)
   const [createActionCardMutation] = useMutation(createActionCard)
