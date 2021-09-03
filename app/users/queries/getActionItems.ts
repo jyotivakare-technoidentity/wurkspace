@@ -1,11 +1,12 @@
 import db from "db"
 import { Ctx } from "blitz"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 export default async function getActionItems(_ = null, { session }: Ctx) {
   let id = 0,
     managerid = 0
   if (session.userId) id = session.userId
-  if (session.managerid) managerid = session.managerid
+  if (session?.managerid) managerid = session.managerid
 
   const actionItem = db.user.findFirst({
     where: { id: id, managerid: managerid },
