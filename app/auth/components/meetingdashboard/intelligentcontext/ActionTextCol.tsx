@@ -9,14 +9,16 @@ import DragActionItems from "./DragActionItems"
 const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => {
   const [createActionCardMutation] = useMutation(createActionCard)
   const [loader, setloader] = useState(false)
+  const [input, setinput] = useState(false)
+  const [test, settest] = useState(false)
   const [actiontext, setactiontext] = useState("Please add the text")
 
   // console.log("Action text col :", insightItem)
 
-  // useEffect(() => {
-  //   settest(!test)
-  //   setloader(false)
-  // }, [actionItems])
+  useEffect(() => {
+    setloader(false)
+    settest(!test)
+  }, [actionItem])
 
   //  drag card
 
@@ -43,13 +45,14 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
         <div className="bg-blue w-full p-0.5 min-h-screen	mt-6 flex">
           <div className="rounded bg-gray-100 w-72">
             <div
-              className={`${actionItem.COLOR} board_text	 p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
+              className={`${actionItem.COLOR} board_text p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
             >
               {actionItem.WS_LABELS?.LABEL_TEXT}
             </div>
             <DragActionItems
               actionItemsDetailsList={actionItem.ACTION_ITEMS}
               agendaDetailid={actionItem.ID}
+              test={test}
             />
             {actionItem.ACTION_ITEMS?.map((actionItem) =>
               actionItem.WS_OOO_DISCUSSION_CARD ? (
@@ -65,17 +68,17 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
               .map((item, idx) => {
                 return <Card key={idx} item={item} />
               })}
-            {loader && <>Loading...</>}
+            {loader ? <>Loading...</> : ""}
             <div className="flex items-center justify-center shadow-2xl m-3">
               <div className="rounded-full h-6 w-6 flex items-center justify-center flash_icons hover:cursor-pointer">
                 <a
                   onClick={() => {
                     const agendaDetailId = actionItem.ID
+                    setloader(true)
                     createActionCardMutation({
                       actiontext,
                       agendaDetailId,
                     })
-                    setloader(true)
                   }}
                 >
                   <img src="/plusicon.png" alt=""></img>
