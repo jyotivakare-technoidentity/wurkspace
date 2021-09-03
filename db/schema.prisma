@@ -79,16 +79,17 @@ model WS_LABELS {
 }
 
 model WS_ONE_ON_ONES {
-  ID                   Int      @id @default(autoincrement())
+  ID                   Int                    @id @default(autoincrement())
   EMPLOYEE_ID          Int
   OOO_WITH_EMPLOYEE_ID Int
   SCHEDULED_TIME       DateTime
-  START_TIME           DateTime @updatedAt
-  END_TIME             DateTime @updatedAt
+  START_TIME           DateTime               @updatedAt
+  END_TIME             DateTime               @updatedAt
   CREATED_BY           Int
-  CREATED_DATE         DateTime @default(now())
+  CREATED_DATE         DateTime               @default(now())
   LAST_UPDATED_BY      Int
-  LAST_UPDATED_DATE    DateTime @updatedAt
+  LAST_UPDATED_DATE    DateTime               @updatedAt
+  WS_OOO_BOARD_DETAILS WS_OOO_BOARD_DETAILS[]
 
 
   User User? @relation(fields: [CREATED_BY], references: [id])
@@ -113,6 +114,7 @@ model WS_OOO_BOARD_DETAILS {
   ACTION_ITEMS    WS_OOO_ACTION_ITEMS[]
   DISCUSSION_CARD WS_OOO_DISCUSSION_CARD[]
   WS_LABELS       WS_LABELS?               @relation(fields: [AGENDA_TYPE], references: [LABEL_CODE])
+  WS_ONE_ON_ONES  WS_ONE_ON_ONES?          @relation(fields: [OOO_ID], references: [ID])
 }
 
 model WS_OOO_ACTION_ITEMS {

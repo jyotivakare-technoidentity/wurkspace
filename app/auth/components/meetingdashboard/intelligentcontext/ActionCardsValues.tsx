@@ -24,6 +24,7 @@ interface InsightItemsType {
 }
 const ActionCardsValues = () => {
   const actionItems = useActionItem()
+  console.log(actionItems)
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
   const [loader, setloader] = useState(false)
@@ -43,17 +44,19 @@ const ActionCardsValues = () => {
     <>
       {" "}
       <div className="flex">
-        {actionItems?.map((actionItem, idx) => (
-          <div key={actionItem.ID}>
-            <ActionTextCol
-              actionItem={actionItem}
-              onDrop={onDrop}
-              index={idx}
-              insightItem={insightItem}
-              cardText={actionItem.WS_LABELS?.LABEL_TEXT}
-            />
-          </div>
-        ))}
+        {actionItems?.WS_ONE_ON_ONES?.map((WS_OOO_BOARD_DETAILS, idx) =>
+          WS_OOO_BOARD_DETAILS.WS_OOO_BOARD_DETAILS?.map((actionItem, idx) => (
+            <div key={actionItem.ID}>
+              <ActionTextCol
+                actionItem={actionItem}
+                onDrop={onDrop}
+                index={idx}
+                insightItem={insightItem}
+                cardText={actionItem.WS_LABELS?.LABEL_TEXT}
+              />
+            </div>
+          ))
+        )}
       </div>{" "}
     </>
   )

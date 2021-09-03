@@ -13,7 +13,7 @@ export const UserInfo = () => {
   return (
     <div>
       <h1 className="header-title">
-        1:1 {userInfo?.firstname} / {managerInfo?.firstname}
+        1:1 {userInfo?.firstname?.trim()} / {managerInfo?.firstname?.trim()}
       </h1>
     </div>
   )
