@@ -26,7 +26,6 @@ export default async function getActionItems(managerid, { session }: Ctx) {
                   WS_OOO_DISCUSSION_CARD: {
                     select: {
                       ID: true,
-                      AGENDA_DETAIL_ID: true,
                       DESCRIPTION: true,
                       DISPLAY_FLAG: true,
                       DISCUSSION_POINT: true,
@@ -34,7 +33,6 @@ export default async function getActionItems(managerid, { session }: Ctx) {
                   },
                   ACTION_DESCRIPTION: true,
                   ACTION_TEXT: true,
-                  DISCUSSION_CARD_ID: true,
                 },
               },
               ID: true,

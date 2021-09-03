@@ -29,7 +29,7 @@ const ActionCardsValues = () => {
   const session = useSession()
   const userInfo = useCurrentUser(session.userId)
   const actionItems = useActionItem(userInfo?.managerid)
-  console.log(actionItems)
+  // console.log(actionItems)
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
   const [loader, setloader] = useState(false)

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import DiscussionCard from "../ActionCard/DiscussionCard"
 import createActionCard from "app/auth/mutations/createActionCard"
+import createDiscussionItems from "app/auth/mutations/createDiscussionCard"
+
 import { useMutation } from "blitz"
 import { useDrop } from "react-dnd"
 import Card from "./Card"
@@ -8,6 +10,8 @@ import DragActionItems from "./DragActionItems"
 
 const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => {
   const [createActionCardMutation] = useMutation(createActionCard)
+  const [createDiscussionCardMutation] = useMutation(createDiscussionItems)
+
   const [loader, setloader] = useState(false)
   const [input, setinput] = useState(false)
   const [test, settest] = useState(false)
@@ -57,7 +61,9 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
             {actionItem.ACTION_ITEMS?.map((actionItem) =>
               actionItem.WS_OOO_DISCUSSION_CARD ? (
                 <div key={actionItem.ID}>
-                  <DiscussionCard values={actionItem.WS_OOO_DISCUSSION_CARD} />
+                  {actionItem.WS_OOO_DISCUSSION_CARD?.map((disucssionCards) => (
+                    <DiscussionCard values={disucssionCards} key={disucssionCards.ID} />
+                  ))}
                 </div>
               ) : (
                 ""
@@ -68,7 +74,6 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
               .map((item, idx) => {
                 return <Card key={idx} item={item} />
               })}
-            {loader ? <>Loading...</> : ""}
             <div className="flex items-center justify-center shadow-2xl m-3">
               <div className="rounded-full h-6 w-6 flex items-center justify-center flash_icons hover:cursor-pointer">
                 <a
@@ -83,9 +88,20 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
                 >
                   <img src="/plusicon.png" alt=""></img>
                 </a>
+                {loader ? <>Loading...</> : ""}
               </div>
               <div className="rounded-full h-6 w-6 ml-4 flex items-center justify-center flash_icons hover:cursor-pointer">
-                <a>
+                <a
+                  onClick={() => {
+                    const agendaDetailId = actionItem.ID
+                    setloader(true)
+                    createDiscussionCardMutation({
+                      discussionPoint: actiontext,
+                      agendaDetailId,
+                      displayFlag: false,
+                    })
+                  }}
+                >
                   <img src="/mask.png" alt=""></img>
                 </a>
               </div>

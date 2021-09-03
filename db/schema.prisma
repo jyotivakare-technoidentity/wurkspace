@@ -107,44 +107,38 @@ model WS_OOO_INTELLIGENT_CONTEXT_POINTS {
 }
 
 model WS_OOO_BOARD_DETAILS {
-  ID              Int                      @id @default(autoincrement())
-  OOO_ID          Int
-  AGENDA_TYPE     String
-  COLOR           String                   @default("purple")
-  CREATED_BY      Int
-  ACTION_ITEMS    WS_OOO_ACTION_ITEMS[]
-  DISCUSSION_CARD WS_OOO_DISCUSSION_CARD[]
-  WS_LABELS       WS_LABELS?               @relation(fields: [AGENDA_TYPE], references: [LABEL_CODE])
-  WS_ONE_ON_ONES  WS_ONE_ON_ONES?          @relation(fields: [OOO_ID], references: [ID])
+  ID             Int                   @id @default(autoincrement())
+  OOO_ID         Int
+  AGENDA_TYPE    String
+  COLOR          String                @default("purple")
+  CREATED_BY     Int
+  ACTION_ITEMS   WS_OOO_ACTION_ITEMS[]
+  WS_LABELS      WS_LABELS?            @relation(fields: [AGENDA_TYPE], references: [LABEL_CODE])
+  WS_ONE_ON_ONES WS_ONE_ON_ONES?       @relation(fields: [OOO_ID], references: [ID])
 }
 
 model WS_OOO_ACTION_ITEMS {
-  ID                     Int                     @id @default(autoincrement())
+  ID                     Int                      @id @default(autoincrement())
   AGENDA_DETAIL_ID       Int?
-  DISCUSSION_CARD_ID     Int?
   CREATED_BY             Int?
   ACTION_TEXT            String?
   ACTION_DESCRIPTION     String?
   STATUS                 String?
   ASSIGNEE_ID            Int?
-  CREATED_DATE           DateTime                @default(now())
+  CREATED_DATE           DateTime                 @default(now())
   DUE_DATE               DateTime?
-  WS_OOO_BOARD_DETAILS   WS_OOO_BOARD_DETAILS?   @relation(fields: [AGENDA_DETAIL_ID], references: [ID])
-  WS_OOO_DISCUSSION_CARD WS_OOO_DISCUSSION_CARD? @relation(fields: [DISCUSSION_CARD_ID], references: [ID])
-  User                   User?                   @relation(fields: [CREATED_BY], references: [id])
+  WS_OOO_BOARD_DETAILS   WS_OOO_BOARD_DETAILS?    @relation(fields: [AGENDA_DETAIL_ID], references: [ID])
+  User                   User?                    @relation(fields: [CREATED_BY], references: [id])
+  WS_OOO_DISCUSSION_CARD WS_OOO_DISCUSSION_CARD[]
 }
 
 model WS_OOO_DISCUSSION_CARD {
-  ID               Int     @id @default(autoincrement())
-  AGENDA_DETAIL_ID Int?
-  CREATED_BY       Int?
-  DISCUSSION_POINT String
-  DESCRIPTION      String?
-  DISPLAY_FLAG     Boolean
-
-
-  WS_OOO_ACTION_ITEMS    WS_OOO_ACTION_ITEMS?
-  User                   User?                 @relation(fields: [CREATED_BY], references: [id])
-  WS_OOO_BOARD_DETAILS   WS_OOO_BOARD_DETAILS? @relation(fields: [wS_OOO_BOARD_DETAILSID], references: [ID])
-  wS_OOO_BOARD_DETAILSID Int?
+  ID                    Int                  @id @default(autoincrement())
+  CREATED_BY            Int?
+  DISCUSSION_POINT      String
+  DESCRIPTION           String?
+  DISPLAY_FLAG          Boolean
+  User                  User?                @relation(fields: [CREATED_BY], references: [id])
+  WS_OOO_ACTION_ITEMS   WS_OOO_ACTION_ITEMS? @relation(fields: [wS_OOO_ACTION_ITEMSID], references: [ID])
+  wS_OOO_ACTION_ITEMSID Int?
 }
