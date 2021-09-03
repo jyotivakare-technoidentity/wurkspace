@@ -18,6 +18,7 @@ import ActionTextCol from "./ActionTextCol"
 import Layout from "app/core/layouts/Layout"
 import DiscussionCard from "../ActionCard/DiscussionCard"
 import { useSession } from "blitz"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 interface InsightItemsType {
   id: number
@@ -26,7 +27,8 @@ interface InsightItemsType {
 }
 const ActionCardsValues = () => {
   const session = useSession()
-  const actionItems = useActionItem(session.managerid)
+  const userInfo = useCurrentUser(session.userId)
+  const actionItems = useActionItem(userInfo?.managerid)
   console.log(actionItems)
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
