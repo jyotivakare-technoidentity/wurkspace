@@ -23,7 +23,7 @@ interface InsightItemsType {
   btn_text: string
 }
 const ActionCardsValues = () => {
-  const actionItems = useActionItem()
+  const actionItems = useActionItem(session.managerid)
   console.log(actionItems)
   const [createActionCardMutation] = useMutation(createActionCard)
   const [actiontext, setactiontext] = useState("Please add the text")
