@@ -39,7 +39,7 @@ p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter"
         <div className="flex justify-between">
           <input
             type="checkbox"
-            className="m-1 h-7 w-7"
+            className="m-1 h-4 w-4"
             onClick={() => {
               setDiscissionText(!discussionText)
               let id = values.ID
