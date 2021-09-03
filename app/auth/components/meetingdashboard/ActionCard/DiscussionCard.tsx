@@ -30,28 +30,32 @@ export const DiscussionCard = ({ values }) => {
   let UserImage: string = userInfo?.image!
 
   return (
-    <div className="text-sm p-2">
+    <div className="text-sm px-3 py-1">
       <div
         className="
 p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter"
         style={{ background: "#E1E4F3" }}
       >
         <div className="flex justify-between">
-          <input
-            type="checkbox"
-            className="m-1 h-4 w-4"
-            onClick={() => {
-              setDiscissionText(!discussionText)
-              let id = values.ID
-              let displayflag = !values.DISPLAY_FLAG
-              updateDisplayMutation({ displayflag, id })
-            }}
-          ></input>
-          <p className={discussionText ? "line-through" : "none"}>{actiontext}</p>
-          <img src={UserImage} className="rounded-full h-8 w-8" />
+          <div className="flex">
+            <input
+              type="checkbox"
+              className="m-1 h-4 w-8"
+              onClick={() => {
+                setDiscissionText(!discussionText)
+                let id = values.ID
+                let displayflag = !values.DISPLAY_FLAG
+                updateDisplayMutation({ displayflag, id })
+              }}
+            ></input>
+            <p className={discussionText ? "line-through" : "none"}>{actiontext}</p>
+          </div>
+          <span className="justify-end">
+            <img src={UserImage} className="rounded-full h-8 w-8" />
+          </span>
         </div>
         <div className=" flex m-2 ">
-          <img src="/calendar.png" className="mr-4" />
+          <img src="/calendar.png" className="mr-4 " />
           Due on Aug 04, 2021
         </div>
       </div>

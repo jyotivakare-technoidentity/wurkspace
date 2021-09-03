@@ -10,6 +10,7 @@ export default function DropDownItemsList() {
             {" "}
             <input
               type="text"
+              className="opacity-0 hover:opacity-100"
               placeholder="Type / to open the items list"
               onKeyPress={(event) => {
                 //console.log(event.code)

@@ -37,7 +37,7 @@ export const ActionCard = ({ actionText, id, agendaDetailid, discussionCard }: L
   let UserImage: string = userInfo?.image!
 
   return (
-    <div className="text-sm p-2">
+    <div className="text-sm p-1">
       <div className="bg-white p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter">
         {inEditMode ? (
           <div className="flex justify-between">
