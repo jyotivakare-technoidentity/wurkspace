@@ -2,11 +2,13 @@ import db from "db"
 import { Ctx } from "blitz"
 
 export default async function getActionItems(_ = null, { session }: Ctx) {
-  let id = 0
+  let id = 0,
+    managerid = 0
   if (session.userId) id = session.userId
+  if (session.managerid) managerid = session.managerid
 
   const actionItem = db.user.findFirst({
-    where: { id: id, managerid: session.managerid },
+    where: { id: id, managerid: managerid },
     select: {
       firstname: true,
       managerid: true,
