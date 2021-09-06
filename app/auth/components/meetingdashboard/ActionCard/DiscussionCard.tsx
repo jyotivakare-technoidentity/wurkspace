@@ -38,16 +38,31 @@ p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter"
       >
         <div className="flex justify-between">
           <div className="flex">
-            <input
-              type="checkbox"
-              className="m-1 h-4 w-8"
-              onClick={() => {
-                setDiscissionText(!discussionText)
-                let id = values.ID
-                let displayflag = !values.DISPLAY_FLAG
-                updateDisplayMutation({ displayflag, id })
-              }}
-            ></input>
+            {discussionText ? (
+              <input
+                type="checkbox"
+                checked
+                className="m-1 h-4 w-8"
+                onClick={() => {
+                  setDiscissionText(!discussionText)
+                  let id = values.ID
+                  let displayflag = !values.DISPLAY_FLAG
+                  updateDisplayMutation({ displayflag, id })
+                }}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                className="m-1 h-4 w-8"
+                onClick={() => {
+                  setDiscissionText(!discussionText)
+                  let id = values.ID
+                  let displayflag = !values.DISPLAY_FLAG
+                  updateDisplayMutation({ displayflag, id })
+                }}
+              />
+            )}
+
             <p className={discussionText ? "line-through" : "none"}>{actiontext}</p>
           </div>
           <span className="justify-end">
