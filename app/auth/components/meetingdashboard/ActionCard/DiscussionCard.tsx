@@ -28,7 +28,6 @@ export const DiscussionCard = ({ values }) => {
   const session = useSession()
   const userInfo = useCurrentUser(session.userId)
   let UserImage: string = userInfo?.image!
-
   return (
     <div className="text-sm px-3 py-1">
       <div
@@ -47,6 +46,7 @@ p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter"
                 let displayflag = !values.DISPLAY_FLAG
                 updateDisplayMutation({ displayflag, id })
               }}
+              defaultChecked={discussionText}
             ></input>
             <p className={discussionText ? "line-through" : "none"}>{actiontext}</p>
           </div>
