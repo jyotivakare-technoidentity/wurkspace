@@ -88,8 +88,8 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
                 >
                   <img src="/plusicon.png" alt=""></img>
                 </a>
-                {loader ? <>Loading...</> : ""}
               </div>
+              {loader ? <>Loading...</> : ""}
               <div className="rounded-full h-6 w-6 ml-4 flex items-center justify-center flash_icons hover:cursor-pointer">
                 <a
                   onClick={() => {

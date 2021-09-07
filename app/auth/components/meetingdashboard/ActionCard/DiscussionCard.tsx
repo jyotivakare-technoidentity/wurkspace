@@ -28,7 +28,6 @@ export const DiscussionCard = ({ values }) => {
   const session = useSession()
   const userInfo = useCurrentUser(session.userId)
   let UserImage: string = userInfo?.image!
-
   return (
     <div className="text-sm px-3 py-1">
       <div
