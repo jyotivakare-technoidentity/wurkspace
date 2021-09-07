@@ -2,6 +2,7 @@ import { Menu, Transition } from "@headlessui/react"
 import { Fragment, useState } from "react"
 
 export default function DropDownItemsList() {
+  const [searchText, setSearchText] = useState("")
   return (
     <Menu as="div" className="relative inline-block text-left ">
       {({ open = false }) => (
@@ -12,11 +13,8 @@ export default function DropDownItemsList() {
               type="text"
               className="opacity-0 hover:opacity-100"
               placeholder="Type / to open the items list"
-              onKeyPress={(event) => {
-                //console.log(event.code)
-                if (event.code === "Slash") open = true
-              }}
-            ></input>
+              onChange={(e) => setSearchText(e.target.value)}
+            />
           </Menu.Button>
           {open && (
             <div className="w-64 text-right fixed top-46 ">
