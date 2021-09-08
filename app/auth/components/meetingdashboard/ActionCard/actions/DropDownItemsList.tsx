@@ -16,7 +16,7 @@ export default function DropDownItemsList() {
     <div className=" dropdown relative inline-block text-left ">
       <input
         type="text"
-        className="opacity-0 hover:opacity-100"
+        className="opacity-0 hover:opacity-100  focus:outline-none"
         placeholder="Type / to open the items list"
         onChange={(e) => {
           setSearchText(e.target.value)
@@ -24,29 +24,29 @@ export default function DropDownItemsList() {
         }}
       />
       {showUserList ? (
-        <ul className="dropdown-menu absolute hidden text-gray-700 bg-white rounded px-1 py-1">
-          <li className="">
+        <ul className="dropdown-menu relative hidden text-gray-700 bg-gray-50 shadow-lg rounded px-1 py-1">
+          <li className="mx-1 my-2">
             <button className=" flex ">
-              <img src={UserImage} alt="image" className=" rounded-full h-5 w-5 mx-2 	 " />
+              <img src={UserImage} alt="image" className=" rounded-full h-5 w-5 mr-2 	 " />
               <p className=" hover:font-medium">{userInfo?.name?.trim()}</p>
             </button>
           </li>
-          <li className="">
+          <li className="mx-1 my-2">
             <button className=" flex  ">
-              <img src={ManagerImage} alt="image" className=" rounded-full h-5 w-5 mx-2 	 " />
+              <img src={ManagerImage} alt="image" className=" rounded-full h-5 w-5 mr-2 	 " />
               <p className="hover:font-medium">{managerInfo?.name?.trim()}</p>
             </button>
           </li>
         </ul>
       ) : (
-        <ul className="dropdown-menu absolute hidden text-gray-700 bg-white rounded px-1 py-1">
-          <li className="mx-1 my-1">
+        <ul className="dropdown-menu relative hidden text-gray-700 bg-gray-50 shadow-lg rounded px-1 py-1">
+          <li className="mx-1 my-2">
             <button className=" flex ">
               <EditActiveIcon className="w-5 h-5 mr-2 " aria-hidden="true" />
               JIRA
             </button>
           </li>
-          <li className="my-1">
+          <li className="my-2 mx-1">
             <button className=" flex  ">
               <ArchiveActiveIcon className="w-5 h-5 mr-2 " aria-hidden="true" />
               Mention someone

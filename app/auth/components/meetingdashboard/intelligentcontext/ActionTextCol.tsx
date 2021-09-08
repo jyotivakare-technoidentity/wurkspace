@@ -49,7 +49,7 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
         <div className="bg-blue w-full p-0.5 min-h-screen	mt-6 flex">
           <div className="rounded bg-gray-100 w-72">
             <div
-              className={`${actionItem.COLOR} board_text p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
+              className={`${actionItem.COLOR}  board_text p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
             >
               {actionItem.WS_LABELS?.LABEL_TEXT}
             </div>

@@ -39,11 +39,13 @@ export const Header = () => {
           </Suspense>
         </div>
 
-        <button className="flex mr-1 p-0.5 w-40 rounded text-white text-base end_meeting_button	 ">
+        <button className="flex mr-1 p-0.5 w-40 rounded text-white text-base end_meeting_button	hover:bg-yellow-600 hover:shadow-md">
           <img src="/corner-up-right.png" className="my-2 ml-4" />
-          <span className="ml-1 mt-1 mr-2">End Meeting</span>
+          <span className="ml-1 mt-2 mr-2">End Meeting</span>
         </button>
-        <button className="flex mx-2 p-2 header_btns ">Previous 1 :1</button>
+        <button className="flex mx-2 p-2 header_btns hover:bg-gray-200 hover:shadow-md ">
+          Previous 1 :1
+        </button>
         <button className="flex mx-2 p-2 header_btns ">
           View 1 :1 from <img src="/headercalender.png" className="mt-1 ml-2 mr-1"></img>
           <DatePicker
@@ -58,7 +60,7 @@ export const Header = () => {
             onChange={(date) => setEndDate(date)}
           />
         </button>
-        <button className="actionitem_btn p-2 px-4 justify-end ml-20">
+        <button className="actionitem_btn p-2 px-4 justify-end ml-20 hover:bg-blue-100 hover:shadow-md">
           <p>
             <span className="cardSpan">
               <span className="icon">
