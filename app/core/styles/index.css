@@ -20,7 +20,9 @@
 body {
   height: 600px; /* Make this site really long /* Make this site really wide */
   overflow-y: scroll; /* Hide scrollbars */
-  font-family: Nunito;
+}
+* {
+  font-family: "Nunito", sans-serif;
 }
 .arrow {
   border: solid black;
@@ -40,7 +42,6 @@ body {
 }
 
 .modal-content {
-  font-family: Nunito;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 
@@ -112,4 +113,7 @@ li:hover li a:hover {
   display: block;
   position: relative;
   float: left;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
 }

@@ -1,79 +1,60 @@
 import { Menu, Transition } from "@headlessui/react"
 import { Fragment, useState } from "react"
-
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { useSession } from "blitz"
+import { UserInfo } from "../../Header"
 export default function DropDownItemsList() {
   const [searchText, setSearchText] = useState("")
+  const session = useSession()
+  const userInfo = useCurrentUser(session.userId)
+  const managerInfo = useCurrentUser(userInfo?.managerid)
+  let UserImage: string = userInfo?.image!
+  let ManagerImage: string = managerInfo?.image!
+
+  const [showUserList, setShowUserList] = useState(false)
   return (
-    <Menu as="div" className="relative inline-block text-left ">
-      {({ open = false }) => (
-        <>
-          <Menu.Button>
-            {" "}
-            <input
-              type="text"
-              className="opacity-0 hover:opacity-100"
-              placeholder="Type / to open the items list"
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-          </Menu.Button>
-          {open && (
-            <div className="w-64 text-right fixed top-46 ">
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items
-                  className="absolute right-0	 w-64 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow ring-1 ring-black ring-opacity-5 focus:outline-none"
-                  static
-                >
-                  <div className="px-1 py-1 ">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          className={`${
-                            active ? "bg-violet-500 text-gray-700" : "text-gray-900"
-                          } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                        >
-                          {active ? (
-                            <EditActiveIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-                          ) : (
-                            <EditInactiveIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-                          )}
-                          JIRA
-                        </button>
-                      )}
-                    </Menu.Item>
-                  </div>
-                  <div className="px-1 py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          className={`${
-                            active ? "bg-violet-500 text-gray-700" : "text-gray-900"
-                          } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                        >
-                          {active ? (
-                            <ArchiveActiveIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-                          ) : (
-                            <ArchiveInactiveIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-                          )}
-                          Mention someone
-                        </button>
-                      )}
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </div>
-          )}
-        </>
+    <div className=" dropdown relative inline-block text-left ">
+      <input
+        type="text"
+        className="opacity-0 hover:opacity-100"
+        placeholder="Type / to open the items list"
+        onChange={(e) => {
+          setSearchText(e.target.value)
+          e.target.value === "@" ? setShowUserList(true) : setShowUserList(false)
+        }}
+      />
+      {showUserList ? (
+        <ul className="dropdown-menu absolute hidden text-gray-700 bg-white rounded px-1 py-1">
+          <li className="">
+            <button className=" flex ">
+              <img src={UserImage} alt="image" className=" rounded-full h-5 w-5 mx-2 	 " />
+              <p className=" hover:font-medium">{userInfo?.name?.trim()}</p>
+            </button>
+          </li>
+          <li className="">
+            <button className=" flex  ">
+              <img src={ManagerImage} alt="image" className=" rounded-full h-5 w-5 mx-2 	 " />
+              <p className="hover:font-medium">{managerInfo?.name?.trim()}</p>
+            </button>
+          </li>
+        </ul>
+      ) : (
+        <ul className="dropdown-menu absolute hidden text-gray-700 bg-white rounded px-1 py-1">
+          <li className="mx-1 my-1">
+            <button className=" flex ">
+              <EditActiveIcon className="w-5 h-5 mr-2 " aria-hidden="true" />
+              JIRA
+            </button>
+          </li>
+          <li className="my-1">
+            <button className=" flex  ">
+              <ArchiveActiveIcon className="w-5 h-5 mr-2 " aria-hidden="true" />
+              Mention someone
+            </button>
+          </li>
+        </ul>
       )}
-    </Menu>
+    </div>
   )
 }
 
