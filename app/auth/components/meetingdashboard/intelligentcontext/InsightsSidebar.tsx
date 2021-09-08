@@ -10,7 +10,7 @@ import { AlertCard } from "app/auth/components/meetingdashboard/intelligentconte
 
 import { InsightsCard } from "app/auth/components/meetingdashboard/intelligentcontext/InsightsCard"
 
-import React from "react"
+import React, { Suspense } from "react"
 
 type LayoutProps = {
   sidebarOpen?: boolean
@@ -57,7 +57,7 @@ export const IntelligentContext = (props: LayoutProps) => {
                   </button>
 
                   <span className="mx-4 flex left-0 relative text-blue-700">
-                    <img src="/Mask.png" className="mr-2" />
+                    <img src="/Mask.png" className="mr-2" alt="" />
                     <h1 style={{ fontSize: "15px" }}> MyGoals</h1>
                   </span>
                   <li>
@@ -68,7 +68,9 @@ export const IntelligentContext = (props: LayoutProps) => {
                     <h1 style={{ fontSize: "15px" }}> Insights</h1>
                   </span>
                   <li>
-                    <InsightsCard />
+                    <Suspense fallback="Loading...">
+                      <InsightsCard />
+                    </Suspense>
                   </li>
                   <span className="mx-4 flex left-0 relative text-blue-700">
                     <TiChartLineOutline

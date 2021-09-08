@@ -7,10 +7,13 @@ import { useMutation } from "blitz"
 import { useDrop } from "react-dnd"
 import Card from "./Card"
 import DragActionItems from "./DragActionItems"
+import { InsightItems, InsightsItemType } from "./InsightsCard"
+import updateInsightsItems from "app/auth/mutations/updateInsightsItems"
 
-const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => {
+const ActionTextCol = ({ actionItem, index }) => {
   const [createActionCardMutation] = useMutation(createActionCard)
   const [createDiscussionCardMutation] = useMutation(createDiscussionItems)
+  const [updateInsightsItemsMutation] = useMutation(updateInsightsItems)
 
   const [loader, setloader] = useState(false)
   const [input, setinput] = useState(false)
@@ -25,8 +28,30 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
   }, [actionItem])
 
   //  drag card
+  const [insightItem, setInsightItem] = useState<(InsightsItemType | undefined)[]>([])
+  const onDrop = (item, index) => {
+    // insightItem = InsightItems
+    // console.log(InsightItems[item.id - 1])
+    // setInsightItem((prevState) => [...prevState, InsightItems[item.id - 1]])
+    const droppedItems = InsightItems.filter((i, idx) => i.ID === item.id)
+    droppedItems[0]!.DISPLAY_FLAG = "N"
+    let displayFlag = droppedItems[0]!.DISPLAY_FLAG
+    let intelligentId = droppedItems[0]!.ID
+    updateInsightsItemsMutation({ displayFlag, intelligentId })
+    const agendaDetailId = actionItem.ID
+    const actiontext = droppedItems[0]!.CONTEXT_POINT_TEXT
 
-  // const [insightItem, setInsightItem] = useState([])
+    createActionCardMutation({
+      actiontext,
+      agendaDetailId,
+    })
+
+    setInsightItem(insightItem.filter((i, idx) => i!.ID !== item.id).concat(droppedItems[0]))
+
+    // console.log("Changed item.......", droppedItems[0]!.DISPLAY_FLAG)
+  }
+
+  // console.log("insightItem  :  ", insightItem)
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "insight",
@@ -49,7 +74,7 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
         <div className="bg-blue w-full p-0.5 min-h-screen	mt-6 flex">
           <div className="rounded bg-gray-100 w-72">
             <div
-              className={`${actionItem.COLOR}  board_text p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
+              className={`${actionItem.COLOR} board_text p-2 rounded  border-b border-grey cursor-pointer hover:bg-grey-lighter`}
             >
               {actionItem.WS_LABELS?.LABEL_TEXT}
             </div>
@@ -70,8 +95,9 @@ const ActionTextCol = ({ actionItem, onDrop, index, insightItem, cardText }) => 
               )
             )}
             {insightItem
-              .filter((i) => i.btn_text === actionItem.WS_LABELS?.LABEL_TEXT)
+              // .filter((i) => i?.TAG_FOR_TOPIC === actionItem.WS_LABELS?.LABEL_TEXT)
               .map((item, idx) => {
+                // console.log(item)
                 return <Card key={idx} item={item} />
               })}
             <div className="flex items-center justify-center shadow-2xl m-3">
