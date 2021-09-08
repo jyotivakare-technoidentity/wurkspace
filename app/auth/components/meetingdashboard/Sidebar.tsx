@@ -12,7 +12,7 @@ export const UserImage = () => {
   return (
     <div>
       <img
-        className="object-cover w-8 h-8 mt-8 rounded-full absolute bottom-6"
+        className="object-cover w-8 h-8 mt-8 rounded-full absolute bottom-6 ml-1"
         src={UserImage}
         alt="Profile image"
       />
