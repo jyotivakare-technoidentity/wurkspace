@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:wurkspace@123@db.fmgcguyldblilwdvgaut.supabase.co:5432/postgres"
+  url      = "postgresql://postgres:Aravindrakumar@0133@db.hcnphbvzyosjwaabzjge.supabase.co:5432/postgres"
 }
 
 generator client {

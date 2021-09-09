@@ -65,11 +65,11 @@ p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter"
             <p className={discussionText ? "line-through" : "none"}>{actiontext}</p>
           </div>
           <span className="justify-end">
-            <img src={UserImage} className="rounded-full h-8 w-8" />
+            <img src={UserImage} className="rounded-full h-8 w-8" alt="" />
           </span>
         </div>
         <div className=" flex m-2 ">
-          <img src="/calendar.png" className="mr-4 " />
+          <img src="/calendar.png" className="mr-4 " alt="" />
           Due on Aug 04, 2021
         </div>
       </div>
