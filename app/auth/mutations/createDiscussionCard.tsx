@@ -8,7 +8,7 @@ export default resolver.pipe(
         DISCUSSION_POINT: discussionPoint,
         DISPLAY_FLAG: displayFlag,
         DESCRIPTION: "testing",
-        wS_OOO_ACTION_ITEMSID: actionItemId,
+        wS_OOO_ACTION_ITEMSID: 4,
       },
       select: { ID: true, DISCUSSION_POINT: true, DISPLAY_FLAG: true, DESCRIPTION: true },
     })

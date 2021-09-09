@@ -36,6 +36,51 @@ export default passportAuth({
             },
             update: { email },
           })
+          const oneOnOne = await db.wS_ONE_ON_ONES.create({
+            data: {
+              EMPLOYEE_ID: user.id,
+              OOO_WITH_EMPLOYEE_ID: user.id,
+              LAST_UPDATED_BY: user.id,
+              CREATED_BY: user.id,
+              SCHEDULED_TIME: user.createdAt,
+              END_TIME: user.createdAt,
+              LAST_UPDATED_DATE: user.createdAt,
+            },
+          })
+          await db.wS_OOO_BOARD_DETAILS.createMany({
+            data: [
+              {
+                CREATED_BY: user.id,
+                OOO_ID: oneOnOne.ID,
+                AGENDA_TYPE: "AGENDA_CHALLENGES",
+                COLOR: "pink",
+              },
+              {
+                CREATED_BY: user.id,
+                OOO_ID: oneOnOne.ID,
+                AGENDA_TYPE: "AGENDA_TOP_OF_MIND",
+                COLOR: "blue",
+              },
+              {
+                CREATED_BY: user.id,
+                OOO_ID: oneOnOne.ID,
+                AGENDA_TYPE: "AGENDA_LEARNING",
+                COLOR: "yellow",
+              },
+              {
+                CREATED_BY: user.id,
+                OOO_ID: oneOnOne.ID,
+                AGENDA_TYPE: "AGENDA_PRIORITIES",
+                COLOR: "purple",
+              },
+              {
+                CREATED_BY: user.id,
+                OOO_ID: oneOnOne.ID,
+                AGENDA_TYPE: "AGENDA_WENT_WELL",
+                COLOR: "pink",
+              },
+            ],
+          })
 
           const publicData = {
             userId: user.id,

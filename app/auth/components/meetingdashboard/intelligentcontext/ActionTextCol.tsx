@@ -94,12 +94,12 @@ const ActionTextCol = ({ actionItem, index }) => {
                 ""
               )
             )}
-            {insightItem
+            {/* {insightItem
               // .filter((i) => i?.TAG_FOR_TOPIC === actionItem.WS_LABELS?.LABEL_TEXT)
               .map((item, idx) => {
                 // console.log(item)
                 return <Card key={idx} item={item} />
-              })}
+              })} */}
             <div className="flex items-center justify-center shadow-2xl m-3">
               <div className="rounded-full h-6 w-6 flex items-center justify-center flash_icons hover:cursor-pointer">
                 <a
